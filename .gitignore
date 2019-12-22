@@ -23,8 +23,9 @@ Pods/*
 *.swp
 !.gitkeep
 .DS_Store
-TRAIN.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
-TRAIN.xcworkspace/contents.xcworkspacedata
+*.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+*.xcworkspace/contents.xcworkspacedata
+*.xcodeproj/xcuserdata/*.xcuserdatad/xcschemes/xcschememanagement.plist
 
 # bundle
 vendor/bundle
