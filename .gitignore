@@ -25,3 +25,6 @@ Pods/*
 .DS_Store
 TRAIN.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 TRAIN.xcworkspace/contents.xcworkspacedata
+
+# bundle
+vendor/bundle
