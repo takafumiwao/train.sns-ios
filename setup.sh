@@ -72,26 +72,31 @@ else
     alreadyInstalledEcho "rbenv"
 fi
 
-# bundlerをインストール
+# Bundlerをインストール
 if !(gem list | grep 'bundler' >/dev/null); then
-    installingEcho "bundler"
+    installingEcho "Bundler"
     gem install bundler
 
     if !(type "bundle" > /dev/null 2>&1); then
-        failureInstallEcho "bundle"
+        failureInstallEcho "Bundle"
         exit 1
     fi
 
     rbenv rehash
-    successInstallEcho "bundler📦"
+    successInstallEcho "Bundler📦"
 else
-    alreadyInstalledEcho "bundler"
+    alreadyInstalledEcho "Bundler"
 fi
 
 # bundleたちをインストール
-echo "installing gem bundle"
+echo "installing Gem bundle"
 bundle install --path vendor/bundle
-echo "Successfully installed gem bundle"
+echo "Gem bundle installation finished"
+
+# CocoaPods実行
+echo "installing CocoaPods libraries"
+bundle exec pod install --repo-update
+echo "CocoaPods libraries installation finished"
 
 echo "Setup is done. Welcome!"
 echo "################################"
