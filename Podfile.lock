@@ -1,0 +1,41 @@
+PODS:
+  - Nuke (8.3.1)
+  - ReactiveCocoa (10.1.0):
+    - ReactiveSwift (~> 6.1)
+  - ReactiveSwift (6.1.0)
+  - SwiftFormat/CLI (0.40.14)
+  - SwiftLint (0.36.0)
+
+DEPENDENCIES:
+  - Nuke (= 8.3.1)
+  - ReactiveCocoa (= 10.1.0)
+  - SwiftFormat/CLI (from `https://github.com/nicklockwood/SwiftFormat`, tag `0.40.14`)
+  - SwiftLint (= 0.36.0)
+
+SPEC REPOS:
+  trunk:
+    - Nuke
+    - ReactiveCocoa
+    - ReactiveSwift
+    - SwiftLint
+
+EXTERNAL SOURCES:
+  SwiftFormat:
+    :git: https://github.com/nicklockwood/SwiftFormat
+    :tag: 0.40.14
+
+CHECKOUT OPTIONS:
+  SwiftFormat:
+    :git: https://github.com/nicklockwood/SwiftFormat
+    :tag: 0.40.14
+
+SPEC CHECKSUMS:
+  Nuke: 85fb80f8df0cb26c28d2f4e0cb7fb93bcd6548d3
+  ReactiveCocoa: 2f1d942d79072eded6d8c3bc7c2a641d40855a56
+  ReactiveSwift: b78c7259f8ca46368238c895ae33a6a3bf9f811c
+  SwiftFormat: 21c9c3c748d5fcece493d8610eee23df15393458
+  SwiftLint: fc9859e4e1752340664851f667bb1898b9c90114
+
+PODFILE CHECKSUM: b155e885bf7fdd5e9a8661acf5a8d69e517388d1
+
+COCOAPODS: 1.8.1
