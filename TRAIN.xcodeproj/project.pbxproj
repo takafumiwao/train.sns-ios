@@ -77,10 +77,7 @@
 				6B770A4423B263FE004F478C /* Views */,
 				6B770A2F23AF9B26004F478C /* AppDelegate.swift */,
 				6B770A3123AF9B26004F478C /* SceneDelegate.swift */,
-				6B770A3323AF9B26004F478C /* ViewController.swift */,
-				6B770A3523AF9B26004F478C /* Main.storyboard */,
 				6B770A3823AF9B2B004F478C /* Assets.xcassets */,
-				6B770A3A23AF9B2B004F478C /* LaunchScreen.storyboard */,
 				6B770A3D23AF9B2B004F478C /* Info.plist */,
 			);
 			path = TRAIN;
@@ -99,6 +96,7 @@
 		6B770A4523B2640A004F478C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6B770A3323AF9B26004F478C /* ViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -106,6 +104,8 @@
 		6B770A4623B26419004F478C /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				6B770A3523AF9B26004F478C /* Main.storyboard */,
+				6B770A3A23AF9B2B004F478C /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
