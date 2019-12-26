@@ -13,6 +13,9 @@
 		6B770A3723AF9B26004F478C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B770A3523AF9B26004F478C /* Main.storyboard */; };
 		6B770A3923AF9B2B004F478C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B770A3823AF9B2B004F478C /* Assets.xcassets */; };
 		6B770A3C23AF9B2B004F478C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B770A3A23AF9B2B004F478C /* LaunchScreen.storyboard */; };
+		6B770A4B23B4E9B5004F478C /* TabBarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B770A4A23B4E9B5004F478C /* TabBarController.storyboard */; };
+		6B770A4D23B4EA14004F478C /* HomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B770A4C23B4EA14004F478C /* HomeViewController.storyboard */; };
+		6B770A4F23B4EAAA004F478C /* MyPageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B770A4E23B4EAAA004F478C /* MyPageViewController.storyboard */; };
 		7E0B4429BA617BE8AC5906AF /* Pods_TRAIN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC67237D0EDBC3ED907D52DB /* Pods_TRAIN.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +29,9 @@
 		6B770A3823AF9B2B004F478C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6B770A3B23AF9B2B004F478C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6B770A3D23AF9B2B004F478C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6B770A4A23B4E9B5004F478C /* TabBarController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBarController.storyboard; sourceTree = "<group>"; };
+		6B770A4C23B4EA14004F478C /* HomeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeViewController.storyboard; sourceTree = "<group>"; };
+		6B770A4E23B4EAAA004F478C /* MyPageViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPageViewController.storyboard; sourceTree = "<group>"; };
 		CC67237D0EDBC3ED907D52DB /* Pods_TRAIN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TRAIN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F105324C021F2B9DADDD05B4 /* Pods-TRAIN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TRAIN.release.xcconfig"; path = "Target Support Files/Pods-TRAIN/Pods-TRAIN.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +112,9 @@
 			children = (
 				6B770A3523AF9B26004F478C /* Main.storyboard */,
 				6B770A3A23AF9B2B004F478C /* LaunchScreen.storyboard */,
+				6B770A4A23B4E9B5004F478C /* TabBarController.storyboard */,
+				6B770A4C23B4EA14004F478C /* HomeViewController.storyboard */,
+				6B770A4E23B4EAAA004F478C /* MyPageViewController.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -200,6 +209,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B770A4F23B4EAAA004F478C /* MyPageViewController.storyboard in Resources */,
+				6B770A4D23B4EA14004F478C /* HomeViewController.storyboard in Resources */,
+				6B770A4B23B4E9B5004F478C /* TabBarController.storyboard in Resources */,
 				6B770A3C23AF9B2B004F478C /* LaunchScreen.storyboard in Resources */,
 				6B770A3923AF9B2B004F478C /* Assets.xcassets in Resources */,
 				6B770A3723AF9B26004F478C /* Main.storyboard in Resources */,
