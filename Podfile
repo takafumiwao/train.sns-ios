@@ -11,6 +11,7 @@ target 'TRAIN' do
   # Pods for TRAIN
   pod 'SwiftFormat/CLI', :git => 'https://github.com/nicklockwood/SwiftFormat', :tag => '0.40.14', :configurations => ['Debug']
   pod 'SwiftLint', '0.36.0'
-  pod 'ReactiveCocoa', '10.1.0'
+  pod 'RxSwift', '5.0.1'
+  pod 'RxCocoa', '5.0.1'
   pod 'Nuke', '8.3.1'
 end
