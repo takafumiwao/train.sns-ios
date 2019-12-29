@@ -10,7 +10,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="gtr-50-9cL">
             <objects>
-                <tabBarController id="UEg-fG-BPn" sceneMemberID="viewController">
+                <tabBarController id="UEg-fG-BPn" customClass="TabBarController" customModule="TRAIN" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="B7E-8A-e7L">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
