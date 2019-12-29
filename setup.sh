@@ -67,7 +67,7 @@ if !(type "rbenv" > /dev/null 2>&1); then
     echo 'eval "$(rbenv init -)"' >> "$PROFILE"
     source "$PROFILE"
 
-    successInstallEcho "rben💎"
+    successInstallEcho "rbenv💎"
 else
     alreadyInstalledEcho "rbenv"
 fi
