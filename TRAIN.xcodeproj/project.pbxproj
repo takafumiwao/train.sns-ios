@@ -18,6 +18,7 @@
 		6B770A5323B8DF66004F478C /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B770A5223B8DF66004F478C /* MyPageViewController.swift */; };
 		6B770A5523B8E089004F478C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B770A5423B8E089004F478C /* TabBarController.swift */; };
 		6B770A5823B8E3FC004F478C /* UITableView.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B770A5723B8E3FC004F478C /* UITableView.extension.swift */; };
+		6B770A5A23B8EAB1004F478C /* UIViewController.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B770A5923B8EAB1004F478C /* UIViewController.extension.swift */; };
 		7E0B4429BA617BE8AC5906AF /* Pods_TRAIN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC67237D0EDBC3ED907D52DB /* Pods_TRAIN.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		6B770A5223B8DF66004F478C /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		6B770A5423B8E089004F478C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		6B770A5723B8E3FC004F478C /* UITableView.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.extension.swift; sourceTree = "<group>"; };
+		6B770A5923B8EAB1004F478C /* UIViewController.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.extension.swift; sourceTree = "<group>"; };
 		CC67237D0EDBC3ED907D52DB /* Pods_TRAIN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TRAIN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F105324C021F2B9DADDD05B4 /* Pods-TRAIN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TRAIN.release.xcconfig"; path = "Target Support Files/Pods-TRAIN/Pods-TRAIN.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				6B770A5723B8E3FC004F478C /* UITableView.extension.swift */,
+				6B770A5923B8EAB1004F478C /* UIViewController.extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B770A5A23B8EAB1004F478C /* UIViewController.extension.swift in Sources */,
 				6B770A3023AF9B26004F478C /* AppDelegate.swift in Sources */,
 				6B770A3223AF9B26004F478C /* SceneDelegate.swift in Sources */,
 				6B770A5123B8DF41004F478C /* HomeViewController.swift in Sources */,
