@@ -1,0 +1,24 @@
+name: PRCheck
+
+on: [pull_request]
+
+jobs:
+  build:
+
+    runs-on: macOS-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup Ruby
+      uses: clupprich/ruby-build-action@v1.3.0
+      with:
+        ruby-version: 2.6.3
+        cache-available: true
+    - name: Install danger
+        run: |
+          gem install bundler
+          bundle install
+    - name: Run danger
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: danger
