@@ -15,7 +15,7 @@ jobs:
         ruby-version: 2.6.3
         cache-available: true
     - name: Install danger
-        run: |
+      run: |
           gem install bundler
           bundle install
     - name: Run danger
