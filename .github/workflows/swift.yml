@@ -5,20 +5,20 @@ on: [pull_request]
 jobs:
   build:
 
-    runs-on: macOS-latest
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v1
-    - name: Setup Ruby
-      uses: clupprich/ruby-build-action@v1.3.0
+    - name: Setup ruby
+      uses: actions/setup-ruby@v1
       with:
-        ruby-version: 2.6.3
-        cache-available: true
-    - name: Install danger
+        ruby-version: '2.6.3'
+        architecture: 'x64'
+    - name: install danger
       run: |
-          gem install bundler
-          bundle install
-    - name: Run danger
+        gem install bundler
+        bundle install
+    - name: run danger
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: danger
