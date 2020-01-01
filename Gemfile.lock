@@ -70,6 +70,10 @@ GEM
       no_proxy_fix
       octokit (~> 4.7)
       terminal-table (~> 1)
+    danger-plugin-api (1.0.0)
+      danger (> 2.0)
+    danger-swiftformat (0.6.0)
+      danger-plugin-api (~> 1.0)
     escape (0.0.4)
     faraday (0.17.1)
       multipart-post (>= 1.2, < 3)
@@ -120,6 +124,7 @@ PLATFORMS
 DEPENDENCIES
   cocoapods (= 1.8.1)
   danger (= 6.1.0)
+  danger-swiftformat (= 0.6.0)
 
 BUNDLED WITH
    2.1.2

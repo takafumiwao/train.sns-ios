@@ -10,3 +10,6 @@ isFeature = github.branch_for_head.match(/feature\//)
 if isFeature && github.branch_for_base == "master"
    fail("featureはmasterブランチにマージできません")
 end
+
+# Swiftformat
+swiftformat.check_format(fail_on_error: true)
