@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+current_branch = `git branch | grep '*'`.chomp.sub('* ', '')
+if /(feature|hotfix)\/(\d+)-/ =~ current_branch
+  issue_no = $2
+  commit_msgs = File.readlines(ARGV[0], encoding: 'UTF-8')
+  exit if commit_msgs[0] =~ /^##{issue_no}\s/
+  open(ARGV[0], 'w') {|file|
+    file.print "##{issue_no} "
+    file.puts commit_msgs
+  }
+end
