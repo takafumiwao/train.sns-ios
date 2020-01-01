@@ -25,6 +25,13 @@ cd `dirname $0`
 echo "################################"
 echo "Start setup…"
 
+# githookの設定
+echo "Start setup githook ..."
+git config core.hooksPath .githooks
+chmod +x .githooks/prepare-commit-msg
+chmod +x .githooks/pre-commit
+echo "Setup githook finished"
+
 # Homebrewをインストール
 if !(type "brew" > /dev/null 2>&1); then
     installingEcho "Homebrew"
