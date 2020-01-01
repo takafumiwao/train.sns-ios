@@ -12,7 +12,6 @@ jobs:
       uses: actions/setup-ruby@v1
       with:
         ruby-version: '2.6.3'
-        architecture: 'x64'
     - name: Bundle cache
       id: cache-bundle
       uses: actions/cache@v1
@@ -25,7 +24,7 @@ jobs:
       if: steps.cache-bundle.outputs.cache-hit != 'true'
       run: |
         gem install bundler
-        bundle install
+        bundle install --jobs 4 --retry 3 --path vendor/bundle
     - name: CocoaPods cache
       id: cache-cocoapods
       uses: actions/cache@v1
