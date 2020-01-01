@@ -13,13 +13,31 @@ jobs:
       with:
         ruby-version: '2.6.3'
         architecture: 'x64'
-    - name: install danger
+    - name: Bundle cache
+      id: cache-bundle
+      uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gem-
+    - name: Bundle install
+      if: steps.cache-bundle.outputs.cache-hit != 'true'
       run: |
         gem install bundler
         bundle install
-    - name: run pod
-      run: bundle exec pod install --repo-update
-    - name: run danger
+    - name: CocoaPods cache
+      id: cache-cocoapods
+      uses: actions/cache@v1
+      with:
+        path: Pods
+        key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-pods-
+    - name: Pod install
+      if: steps.cache-cocoapods.outputs.cache-hit != 'true'
+      run: bundle exec pod install
+    - name: Run danger
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: bundle exec danger
