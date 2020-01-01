@@ -18,6 +18,8 @@ jobs:
       run: |
         gem install bundler
         bundle install
+    - name: run pod
+      run: bundle exec pod install --repo-update
     - name: run danger
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
