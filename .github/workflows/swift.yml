@@ -14,7 +14,7 @@ jobs:
       with:
         ruby-version: '2.6.3'
 
-    - name: Bundle cache
+    - name: Cache bundle
       uses: actions/cache@v1
       with:
         path: vendor/bundle
@@ -27,7 +27,7 @@ jobs:
         gem install bundler
         bundle install --jobs 4 --retry 3 --path vendor/bundle
 
-    - name: CocoaPods cache
+    - name: Cache CocoaPods
       uses: actions/cache@v1
       with:
         path: Pods
