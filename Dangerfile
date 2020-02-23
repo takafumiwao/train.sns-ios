@@ -13,5 +13,5 @@ end
 
 # Swiftformat
 swiftformat.binary_path = "Pods/SwiftFormat/CommandLineTool/swiftformat"
-swiftformat.additional_args = "--exclude Carthage,Pods --trimwhitespace nonblank-lines --stripunusedargs closure-only --disable strongOutlets,trailingCommas"
+swiftformat.additional_args = "--exclude Carthage,Pods --stripunusedargs closure-only --disable strongOutlets,trailingCommas"
 swiftformat.check_format(fail_on_error: true)
