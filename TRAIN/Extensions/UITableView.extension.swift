@@ -15,7 +15,7 @@ extension UITableView {
         let nib: UINib = UINib(nibName: nibName, bundle: nil)
         register(nib, forCellReuseIdentifier: nibName)
     }
-    
+
     /// UITableViewのdequeueReusableCellと同じ。コードファイルとxibファイルのファイル名を揃える必要がある
     public func dequeueReusableCell<T: UITableViewCell>(_ cellType: UITableViewCell.Type, for indexPath: IndexPath) -> T? {
         let identifier: String = String(describing: cellType.classForCoder())
