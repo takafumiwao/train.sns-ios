@@ -20,6 +20,8 @@
 		6B770A5823B8E3FC004F478C /* UITableView.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B770A5723B8E3FC004F478C /* UITableView.extension.swift */; };
 		6B770A5A23B8EAB1004F478C /* UIViewController.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B770A5923B8EAB1004F478C /* UIViewController.extension.swift */; };
 		7E0B4429BA617BE8AC5906AF /* Pods_TRAIN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC67237D0EDBC3ED907D52DB /* Pods_TRAIN.framework */; };
+		AC35BAC82403E3A30039E7E5 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC35BAC72403E3A30039E7E5 /* PostViewController.swift */; };
+		AC35BACA2403F3680039E7E5 /* PostViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC35BAC92403F3680039E7E5 /* PostViewController.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		6B770A5423B8E089004F478C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		6B770A5723B8E3FC004F478C /* UITableView.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.extension.swift; sourceTree = "<group>"; };
 		6B770A5923B8EAB1004F478C /* UIViewController.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.extension.swift; sourceTree = "<group>"; };
+		AC35BAC72403E3A30039E7E5 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		AC35BAC92403F3680039E7E5 /* PostViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostViewController.storyboard; sourceTree = "<group>"; };
 		CC67237D0EDBC3ED907D52DB /* Pods_TRAIN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TRAIN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F105324C021F2B9DADDD05B4 /* Pods-TRAIN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TRAIN.release.xcconfig"; path = "Target Support Files/Pods-TRAIN/Pods-TRAIN.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +116,7 @@
 				6B770A5023B8DF41004F478C /* HomeViewController.swift */,
 				6B770A5223B8DF66004F478C /* MyPageViewController.swift */,
 				6B770A5423B8E089004F478C /* TabBarController.swift */,
+				AC35BAC72403E3A30039E7E5 /* PostViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 				6B770A4A23B4E9B5004F478C /* TabBarController.storyboard */,
 				6B770A4C23B4EA14004F478C /* HomeViewController.storyboard */,
 				6B770A4E23B4EAAA004F478C /* MyPageViewController.storyboard */,
+				AC35BAC92403F3680039E7E5 /* PostViewController.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -227,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B770A4F23B4EAAA004F478C /* MyPageViewController.storyboard in Resources */,
+				AC35BACA2403F3680039E7E5 /* PostViewController.storyboard in Resources */,
 				6B770A4D23B4EA14004F478C /* HomeViewController.storyboard in Resources */,
 				6B770A4B23B4E9B5004F478C /* TabBarController.storyboard in Resources */,
 				6B770A3C23AF9B2B004F478C /* LaunchScreen.storyboard in Resources */,
@@ -300,6 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC35BAC82403E3A30039E7E5 /* PostViewController.swift in Sources */,
 				6B770A5A23B8EAB1004F478C /* UIViewController.extension.swift in Sources */,
 				6B770A3023AF9B26004F478C /* AppDelegate.swift in Sources */,
 				6B770A3223AF9B26004F478C /* SceneDelegate.swift in Sources */,
