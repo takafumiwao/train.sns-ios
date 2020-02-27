@@ -9,7 +9,16 @@
 import UIKit
 
 class PostViewController: UIViewController {
+    @IBOutlet weak var postButton: UIBarButtonItem!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    override func viewWillLayoutSubviews() {}
+
+    @IBAction func backHome(_ sender: Any) {
+        // Home画面に戻る
+        dismiss(animated: true, completion: nil)
     }
 }
