@@ -3,12 +3,12 @@ PODS:
   - RxCocoa (5.0.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
-  - RxRelay (5.0.1):
+  - RxRelay (5.1.0):
     - RxSwift (~> 5)
   - RxSwift (5.0.1)
   - SwiftFormat/CLI (0.40.14)
   - SwiftLint (0.36.0)
-  - TrainAPI (0.0.1):
+  - TrainClient (1.0.0):
     - RxSwift (~> 5.0.0)
 
 DEPENDENCIES:
@@ -17,7 +17,7 @@ DEPENDENCIES:
   - RxSwift (= 5.0.1)
   - SwiftFormat/CLI (from `https://github.com/nicklockwood/SwiftFormat`, tag `0.40.14`)
   - SwiftLint (= 0.36.0)
-  - TrainAPI (from `https://github.com/trainsocialnetwork/ios-api`, branch `test`)
+  - TrainClient (from `https://github.com/trainsocialnetwork/ios-api`, branch `test`)
 
 SPEC REPOS:
   trunk:
@@ -31,7 +31,7 @@ EXTERNAL SOURCES:
   SwiftFormat:
     :git: https://github.com/nicklockwood/SwiftFormat
     :tag: 0.40.14
-  TrainAPI:
+  TrainClient:
     :branch: test
     :git: https://github.com/trainsocialnetwork/ios-api
 
@@ -39,19 +39,19 @@ CHECKOUT OPTIONS:
   SwiftFormat:
     :git: https://github.com/nicklockwood/SwiftFormat
     :tag: 0.40.14
-  TrainAPI:
-    :commit: 9492e66fc9fa9f30f4b6e8ca50c2a5fbc5c03e8e
+  TrainClient:
+    :commit: 2b34671b58c716eefff9720943958994e769a802
     :git: https://github.com/trainsocialnetwork/ios-api
 
 SPEC CHECKSUMS:
   Nuke: 85fb80f8df0cb26c28d2f4e0cb7fb93bcd6548d3
   RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
-  RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
+  RxRelay: a168bd6caf712d00c676ac344e9295afc93b418e
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SwiftFormat: 21c9c3c748d5fcece493d8610eee23df15393458
   SwiftLint: fc9859e4e1752340664851f667bb1898b9c90114
-  TrainAPI: 3c42be7befc77d1b76436ebae2398f2beaee7cf1
+  TrainClient: e0b362b5486b3546ed08f4d448afb5312387fba2
 
-PODFILE CHECKSUM: eaa190d9614d5afe4d4180494f4f1226c2e3f1c0
+PODFILE CHECKSUM: 86d8c04f065b788eae0c18dc2e0004fff06b029e
 
 COCOAPODS: 1.8.1
