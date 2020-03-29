@@ -22,6 +22,28 @@
 		7E0B4429BA617BE8AC5906AF /* Pods_TRAIN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC67237D0EDBC3ED907D52DB /* Pods_TRAIN.framework */; };
 		AC35BAC82403E3A30039E7E5 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC35BAC72403E3A30039E7E5 /* PostViewController.swift */; };
 		AC35BACA2403F3680039E7E5 /* PostViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC35BAC92403F3680039E7E5 /* PostViewController.storyboard */; };
+		AC35BACE2407FF970039E7E5 /* TraininngMenuViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC35BACD2407FF970039E7E5 /* TraininngMenuViewController.storyboard */; };
+		AC35BAD02407FFE50039E7E5 /* MealMenuViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC35BACF2407FFE50039E7E5 /* MealMenuViewController.storyboard */; };
+		AC35BAD22407FFF30039E7E5 /* TagViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC35BAD12407FFF30039E7E5 /* TagViewController.storyboard */; };
+		AC5276F5242E84930006E4AC /* MealMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5276F4242E84930006E4AC /* MealMenuViewModel.swift */; };
+		AC5276FB2430619D0006E4AC /* TrainingSetTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5276FA2430619D0006E4AC /* TrainingSetTableViewModel.swift */; };
+		AC7C4F8B2426F68500D0064B /* CameraRollCollectionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC7C4F8A2426F68500D0064B /* CameraRollCollectionViewController.storyboard */; };
+		AC7C4F8D2426F71400D0064B /* CameraRollCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7C4F8C2426F71400D0064B /* CameraRollCollectionViewController.swift */; };
+		AC7C4F902426FAEC00D0064B /* CameraRollCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7C4F8E2426FAEC00D0064B /* CameraRollCollectionViewCell.swift */; };
+		AC7C4F932428C35400D0064B /* CameraViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC7C4F922428C35400D0064B /* CameraViewController.storyboard */; };
+		AC7C4F952428CC4400D0064B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7C4F942428CC4400D0064B /* CameraViewController.swift */; };
+		AC7C4F97242A44C000D0064B /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7C4F96242A44C000D0064B /* TagViewController.swift */; };
+		AC7C4F9A242B5F8B00D0064B /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7C4F99242B5F8B00D0064B /* PostViewModel.swift */; };
+		AC8A302C240803FE00370A6B /* TrainingMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A302B240803FE00370A6B /* TrainingMenuTableViewController.swift */; };
+		AC8A3035240945CE00370A6B /* TrainingSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A3033240945CE00370A6B /* TrainingSetTableViewCell.swift */; };
+		AC8A3036240945CE00370A6B /* TrainingSetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC8A3034240945CE00370A6B /* TrainingSetTableViewCell.xib */; };
+		AC8A30382409491C00370A6B /* UITextField.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A30372409491C00370A6B /* UITextField.extension.swift */; };
+		AC8A30402409F9E200370A6B /* TrainingSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A303F2409F9E200370A6B /* TrainingSetViewController.swift */; };
+		AC8A30422409FA2300370A6B /* TrainingSetViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC8A30412409FA2300370A6B /* TrainingSetViewController.storyboard */; };
+		AC8A30442409FF4F00370A6B /* TrainingSetFlontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A30432409FF4F00370A6B /* TrainingSetFlontViewController.swift */; };
+		AC8A3046240A7A1600370A6B /* MealMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A3045240A7A1600370A6B /* MealMenuViewController.swift */; };
+		ACEC60422420DC9F0093D66A /* PastInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC60412420DC9F0093D66A /* PastInputViewController.swift */; };
+		ACEC60442420DCC20093D66A /* DirectInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC60432420DCC20093D66A /* DirectInputViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +64,28 @@
 		6B770A5923B8EAB1004F478C /* UIViewController.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.extension.swift; sourceTree = "<group>"; };
 		AC35BAC72403E3A30039E7E5 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		AC35BAC92403F3680039E7E5 /* PostViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostViewController.storyboard; sourceTree = "<group>"; };
+		AC35BACD2407FF970039E7E5 /* TraininngMenuViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TraininngMenuViewController.storyboard; sourceTree = "<group>"; };
+		AC35BACF2407FFE50039E7E5 /* MealMenuViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MealMenuViewController.storyboard; sourceTree = "<group>"; };
+		AC35BAD12407FFF30039E7E5 /* TagViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TagViewController.storyboard; sourceTree = "<group>"; };
+		AC5276F4242E84930006E4AC /* MealMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealMenuViewModel.swift; sourceTree = "<group>"; };
+		AC5276FA2430619D0006E4AC /* TrainingSetTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSetTableViewModel.swift; sourceTree = "<group>"; };
+		AC7C4F8A2426F68500D0064B /* CameraRollCollectionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CameraRollCollectionViewController.storyboard; sourceTree = "<group>"; };
+		AC7C4F8C2426F71400D0064B /* CameraRollCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraRollCollectionViewController.swift; sourceTree = "<group>"; };
+		AC7C4F8E2426FAEC00D0064B /* CameraRollCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraRollCollectionViewCell.swift; path = TRAIN/Views/Controllers/CameraRollCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		AC7C4F922428C35400D0064B /* CameraViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CameraViewController.storyboard; sourceTree = "<group>"; };
+		AC7C4F942428CC4400D0064B /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		AC7C4F96242A44C000D0064B /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
+		AC7C4F99242B5F8B00D0064B /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		AC8A302B240803FE00370A6B /* TrainingMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingMenuTableViewController.swift; sourceTree = "<group>"; };
+		AC8A3033240945CE00370A6B /* TrainingSetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrainingSetTableViewCell.swift; path = TRAIN/Views/Controllers/TrainingSetTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		AC8A3034240945CE00370A6B /* TrainingSetTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TrainingSetTableViewCell.xib; path = TRAIN/Views/Controllers/TrainingSetTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		AC8A30372409491C00370A6B /* UITextField.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.extension.swift; sourceTree = "<group>"; };
+		AC8A303F2409F9E200370A6B /* TrainingSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSetViewController.swift; sourceTree = "<group>"; };
+		AC8A30412409FA2300370A6B /* TrainingSetViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TrainingSetViewController.storyboard; sourceTree = "<group>"; };
+		AC8A30432409FF4F00370A6B /* TrainingSetFlontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSetFlontViewController.swift; sourceTree = "<group>"; };
+		AC8A3045240A7A1600370A6B /* MealMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealMenuViewController.swift; sourceTree = "<group>"; };
+		ACEC60412420DC9F0093D66A /* PastInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastInputViewController.swift; sourceTree = "<group>"; };
+		ACEC60432420DCC20093D66A /* DirectInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectInputViewController.swift; sourceTree = "<group>"; };
 		CC67237D0EDBC3ED907D52DB /* Pods_TRAIN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TRAIN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F105324C021F2B9DADDD05B4 /* Pods-TRAIN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TRAIN.release.xcconfig"; path = "Target Support Files/Pods-TRAIN/Pods-TRAIN.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +161,15 @@
 				6B770A5223B8DF66004F478C /* MyPageViewController.swift */,
 				6B770A5423B8E089004F478C /* TabBarController.swift */,
 				AC35BAC72403E3A30039E7E5 /* PostViewController.swift */,
+				AC7C4F8C2426F71400D0064B /* CameraRollCollectionViewController.swift */,
+				AC7C4F942428CC4400D0064B /* CameraViewController.swift */,
+				AC8A302B240803FE00370A6B /* TrainingMenuTableViewController.swift */,
+				AC8A30432409FF4F00370A6B /* TrainingSetFlontViewController.swift */,
+				AC8A303F2409F9E200370A6B /* TrainingSetViewController.swift */,
+				AC8A3045240A7A1600370A6B /* MealMenuViewController.swift */,
+				ACEC60412420DC9F0093D66A /* PastInputViewController.swift */,
+				ACEC60432420DCC20093D66A /* DirectInputViewController.swift */,
+				AC7C4F96242A44C000D0064B /* TagViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -129,6 +182,12 @@
 				6B770A4C23B4EA14004F478C /* HomeViewController.storyboard */,
 				6B770A4E23B4EAAA004F478C /* MyPageViewController.storyboard */,
 				AC35BAC92403F3680039E7E5 /* PostViewController.storyboard */,
+				AC7C4F8A2426F68500D0064B /* CameraRollCollectionViewController.storyboard */,
+				AC7C4F922428C35400D0064B /* CameraViewController.storyboard */,
+				AC35BACD2407FF970039E7E5 /* TraininngMenuViewController.storyboard */,
+				AC8A30412409FA2300370A6B /* TrainingSetViewController.storyboard */,
+				AC35BACF2407FFE50039E7E5 /* MealMenuViewController.storyboard */,
+				AC35BAD12407FFF30039E7E5 /* TagViewController.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -136,6 +195,9 @@
 		6B770A4723B2642E004F478C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				AC8A3033240945CE00370A6B /* TrainingSetTableViewCell.swift */,
+				AC8A3034240945CE00370A6B /* TrainingSetTableViewCell.xib */,
+				AC7C4F8E2426FAEC00D0064B /* CameraRollCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -143,6 +205,7 @@
 		6B770A4823B39ABF004F478C /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				AC7C4F98242B5F7400D0064B /* PostViewModel */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -159,6 +222,7 @@
 			children = (
 				6B770A5723B8E3FC004F478C /* UITableView.extension.swift */,
 				6B770A5923B8EAB1004F478C /* UIViewController.extension.swift */,
+				AC8A30372409491C00370A6B /* UITextField.extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -169,6 +233,16 @@
 				CC67237D0EDBC3ED907D52DB /* Pods_TRAIN.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AC7C4F98242B5F7400D0064B /* PostViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AC7C4F99242B5F8B00D0064B /* PostViewModel.swift */,
+				AC5276F4242E84930006E4AC /* MealMenuViewModel.swift */,
+				AC5276FA2430619D0006E4AC /* TrainingSetTableViewModel.swift */,
+			);
+			path = PostViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,12 +306,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC8A3036240945CE00370A6B /* TrainingSetTableViewCell.xib in Resources */,
 				6B770A4F23B4EAAA004F478C /* MyPageViewController.storyboard in Resources */,
+				AC35BAD02407FFE50039E7E5 /* MealMenuViewController.storyboard in Resources */,
 				AC35BACA2403F3680039E7E5 /* PostViewController.storyboard in Resources */,
+				AC35BAD22407FFF30039E7E5 /* TagViewController.storyboard in Resources */,
+				AC35BACE2407FF970039E7E5 /* TraininngMenuViewController.storyboard in Resources */,
 				6B770A4D23B4EA14004F478C /* HomeViewController.storyboard in Resources */,
 				6B770A4B23B4E9B5004F478C /* TabBarController.storyboard in Resources */,
 				6B770A3C23AF9B2B004F478C /* LaunchScreen.storyboard in Resources */,
+				AC8A30422409FA2300370A6B /* TrainingSetViewController.storyboard in Resources */,
 				6B770A3923AF9B2B004F478C /* Assets.xcassets in Resources */,
+				AC7C4F932428C35400D0064B /* CameraViewController.storyboard in Resources */,
+				AC7C4F8B2426F68500D0064B /* CameraRollCollectionViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,14 +388,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC8A3035240945CE00370A6B /* TrainingSetTableViewCell.swift in Sources */,
+				AC7C4F952428CC4400D0064B /* CameraViewController.swift in Sources */,
 				AC35BAC82403E3A30039E7E5 /* PostViewController.swift in Sources */,
 				6B770A5A23B8EAB1004F478C /* UIViewController.extension.swift in Sources */,
 				6B770A3023AF9B26004F478C /* AppDelegate.swift in Sources */,
+				AC8A30382409491C00370A6B /* UITextField.extension.swift in Sources */,
+				AC7C4F97242A44C000D0064B /* TagViewController.swift in Sources */,
+				ACEC60442420DCC20093D66A /* DirectInputViewController.swift in Sources */,
+				AC7C4F902426FAEC00D0064B /* CameraRollCollectionViewCell.swift in Sources */,
+				AC8A3046240A7A1600370A6B /* MealMenuViewController.swift in Sources */,
+				AC5276F5242E84930006E4AC /* MealMenuViewModel.swift in Sources */,
+				AC8A30442409FF4F00370A6B /* TrainingSetFlontViewController.swift in Sources */,
 				6B770A3223AF9B26004F478C /* SceneDelegate.swift in Sources */,
+				AC8A30402409F9E200370A6B /* TrainingSetViewController.swift in Sources */,
 				6B770A5123B8DF41004F478C /* HomeViewController.swift in Sources */,
+				AC7C4F9A242B5F8B00D0064B /* PostViewModel.swift in Sources */,
 				6B770A5523B8E089004F478C /* TabBarController.swift in Sources */,
+				AC7C4F8D2426F71400D0064B /* CameraRollCollectionViewController.swift in Sources */,
 				6B770A5823B8E3FC004F478C /* UITableView.extension.swift in Sources */,
 				6B770A5323B8DF66004F478C /* MyPageViewController.swift in Sources */,
+				AC8A302C240803FE00370A6B /* TrainingMenuTableViewController.swift in Sources */,
+				AC5276FB2430619D0006E4AC /* TrainingSetTableViewModel.swift in Sources */,
+				ACEC60422420DC9F0093D66A /* PastInputViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
