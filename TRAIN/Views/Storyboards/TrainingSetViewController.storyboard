@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Training Set Flont View Controller-->
+        <scene sceneID="US6-mi-e89">
+            <objects>
+                <viewController storyboardIdentifier="TrainingSetFlontViewController" id="TUs-Pi-9O0" customClass="TrainingSetFlontViewController" customModule="TRAIN" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ncq-IA-S9D">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9N8-yH-lTL">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <connections>
+                                    <segue destination="qwD-vF-4bf" kind="embed" id="qNL-SV-Fmo"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLQ-V3-Q8Y">
+                                <rect key="frame" x="309" y="757" width="105" height="105"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="trainingSetButton"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="9N8-yH-lTL" firstAttribute="leading" secondItem="nja-1S-jzA" secondAttribute="leading" id="2wq-YC-g2y"/>
+                            <constraint firstItem="9N8-yH-lTL" firstAttribute="top" secondItem="nja-1S-jzA" secondAttribute="top" id="48L-8p-5PX"/>
+                            <constraint firstItem="nja-1S-jzA" firstAttribute="trailing" secondItem="9N8-yH-lTL" secondAttribute="trailing" id="Dn0-YL-hi8"/>
+                            <constraint firstItem="9N8-yH-lTL" firstAttribute="bottom" secondItem="nja-1S-jzA" secondAttribute="bottom" constant="34" id="IEa-hs-guZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nja-1S-jzA"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="tAX-1v-3Iv"/>
+                    <connections>
+                        <outlet property="trainingAddButton" destination="KLQ-V3-Q8Y" id="Odo-Bq-G9e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b8V-wf-y7B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="886.95652173913049" y="-129.24107142857142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4o5-p4-61c">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XwK-4K-Nfd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KhG-wP-BMH">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="TUs-Pi-9O0" kind="relationship" relationship="rootViewController" id="zua-9M-7Sq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2tC-6n-CzC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-23.188405797101453" y="-129.24107142857142"/>
+        </scene>
+        <!--TrainingSetViewController-->
+        <scene sceneID="05n-L1-MDC">
+            <objects>
+                <viewController storyboardIdentifier="TrainingSetViewController" title="TrainingSetViewController" id="qwD-vF-4bf" customClass="TrainingSetViewController" customModule="TRAIN" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="L9q-Al-2ua">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oGA-ut-LtE">
+                                <rect key="frame" x="0.0" y="44" width="414" height="764"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrainingSetCell" id="Hrq-TQ-7WC">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hrq-TQ-7WC" id="tbm-C0-anB">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="qwD-vF-4bf" id="i0f-4L-gl4"/>
+                                    <outlet property="delegate" destination="qwD-vF-4bf" id="mdJ-Hx-CbG"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="697-tX-fqc" firstAttribute="bottom" secondItem="oGA-ut-LtE" secondAttribute="bottom" id="FOa-RP-x1r"/>
+                            <constraint firstItem="oGA-ut-LtE" firstAttribute="leading" secondItem="697-tX-fqc" secondAttribute="leading" id="RHu-y5-Zlk"/>
+                            <constraint firstItem="697-tX-fqc" firstAttribute="top" secondItem="oGA-ut-LtE" secondAttribute="top" id="egD-9f-546"/>
+                            <constraint firstItem="697-tX-fqc" firstAttribute="trailing" secondItem="oGA-ut-LtE" secondAttribute="trailing" id="ezG-z8-kEH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="697-tX-fqc"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="oGA-ut-LtE" id="RPW-bl-gm4"/>
+                        <outlet property="tableViewBottomConstraint" destination="FOa-RP-x1r" id="UPx-aA-DLK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U3v-FP-Kpp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1686.9565217391305" y="-129.24107142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="trainingSetButton" width="105" height="105"/>
+    </resources>
+</document>
