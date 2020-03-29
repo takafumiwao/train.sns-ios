@@ -26,6 +26,7 @@ Pods/*
 *.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 *.xcworkspace/contents.xcworkspacedata
 *.xcodeproj/xcuserdata/*.xcuserdatad/xcschemes/xcschememanagement.plist
+TRAIN.xcodeproj/xcshareddata/xcschemes/TRAIN.xcscheme
 
 # bundle
 vendor/bundle
