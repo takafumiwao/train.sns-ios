@@ -9,7 +9,7 @@ target 'TRAIN' do
   use_frameworks!
 
   # Pods for TRAIN
-  pod 'TrainClient', :git => 'https://github.com/trainsocialnetwork/ios-api', :branch => 'test'
+  pod 'TrainClient', :git => 'https://github.com/trainsocialnetwork/ios-api', :branch => 'master'
 
   pod 'SwiftFormat/CLI', :git => 'https://github.com/nicklockwood/SwiftFormat', :tag => '0.40.14', :configurations => ['Debug']
   pod 'SwiftLint', '0.36.0'

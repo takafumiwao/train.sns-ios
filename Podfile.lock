@@ -17,7 +17,7 @@ DEPENDENCIES:
   - RxSwift (= 5.0.1)
   - SwiftFormat/CLI (from `https://github.com/nicklockwood/SwiftFormat`, tag `0.40.14`)
   - SwiftLint (= 0.36.0)
-  - TrainClient (from `https://github.com/trainsocialnetwork/ios-api`, branch `test`)
+  - TrainClient (from `https://github.com/trainsocialnetwork/ios-api`, branch `master`)
 
 SPEC REPOS:
   trunk:
@@ -32,7 +32,7 @@ EXTERNAL SOURCES:
     :git: https://github.com/nicklockwood/SwiftFormat
     :tag: 0.40.14
   TrainClient:
-    :branch: test
+    :branch: master
     :git: https://github.com/trainsocialnetwork/ios-api
 
 CHECKOUT OPTIONS:
@@ -40,7 +40,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/nicklockwood/SwiftFormat
     :tag: 0.40.14
   TrainClient:
-    :commit: 2b34671b58c716eefff9720943958994e769a802
+    :commit: f49db1d02690285a8f0f948ef6af15b260b97486
     :git: https://github.com/trainsocialnetwork/ios-api
 
 SPEC CHECKSUMS:
@@ -52,6 +52,6 @@ SPEC CHECKSUMS:
   SwiftLint: fc9859e4e1752340664851f667bb1898b9c90114
   TrainClient: e0b362b5486b3546ed08f4d448afb5312387fba2
 
-PODFILE CHECKSUM: 86d8c04f065b788eae0c18dc2e0004fff06b029e
+PODFILE CHECKSUM: a39fc7db0a73fb6926d5a683e78c3d155ff2986b
 
 COCOAPODS: 1.8.1
