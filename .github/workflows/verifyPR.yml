@@ -7,15 +7,7 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v1
-    
-    - name: Setup SSH
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.ACTIONS_SSH_PRIVATE_KEY }}
-      run: |
-        mkdir -p ~/.ssh
-	ssh-keyscan github.com >> ~/.ssh/known_hosts
-        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+    - uses: actions/checkout@v2
 
     - name: Setup ruby
       uses: actions/setup-ruby@v1
@@ -48,6 +40,4 @@ jobs:
       run: bundle exec pod install
 
     - name: Run danger
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: bundle exec danger
