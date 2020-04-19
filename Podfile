@@ -16,4 +16,5 @@ target 'TRAIN' do
   pod 'RxSwift', '5.0.1'
   pod 'RxCocoa', '5.0.1'
   pod 'Nuke', '8.3.1'
+  pod 'TagListView', '1.4.0'
 end

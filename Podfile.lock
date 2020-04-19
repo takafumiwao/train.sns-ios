@@ -8,6 +8,7 @@ PODS:
   - RxSwift (5.0.1)
   - SwiftFormat/CLI (0.40.14)
   - SwiftLint (0.36.0)
+  - TagListView (1.4.0)
   - TrainClient (1.0.0):
     - RxSwift (~> 5.0.0)
 
@@ -17,6 +18,7 @@ DEPENDENCIES:
   - RxSwift (= 5.0.1)
   - SwiftFormat/CLI (from `https://github.com/nicklockwood/SwiftFormat`, tag `0.40.14`)
   - SwiftLint (= 0.36.0)
+  - TagListView (= 1.4.0)
   - "TrainClient (from `https://b4dd4198f45ddb5633c39c5baa5a123115e79cb8:x-oauth-basic@github.com/trainsocialnetwork/ios-api.git`, branch `master`)"
 
 SPEC REPOS:
@@ -26,6 +28,7 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - SwiftLint
+    - TagListView
 
 EXTERNAL SOURCES:
   SwiftFormat:
@@ -50,8 +53,9 @@ SPEC CHECKSUMS:
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SwiftFormat: 21c9c3c748d5fcece493d8610eee23df15393458
   SwiftLint: fc9859e4e1752340664851f667bb1898b9c90114
+  TagListView: 987b0bdbb16cd9d9e7c0e2ec32aff37ecba8b173
   TrainClient: e0b362b5486b3546ed08f4d448afb5312387fba2
 
-PODFILE CHECKSUM: d495f0f55a159912e44c1a4343d5be0b9cd06c54
+PODFILE CHECKSUM: 50384c405bef36f7c920629328ef6e31a84e5d1e
 
 COCOAPODS: 1.8.1
