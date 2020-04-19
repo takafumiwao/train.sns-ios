@@ -40,4 +40,6 @@ jobs:
       run: bundle exec pod install
 
     - name: Run danger
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: bundle exec danger
