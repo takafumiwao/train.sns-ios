@@ -3,11 +3,13 @@ PODS:
   - RxCocoa (5.0.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
-  - RxRelay (5.0.1):
+  - RxRelay (5.1.0):
     - RxSwift (~> 5)
   - RxSwift (5.0.1)
   - SwiftFormat/CLI (0.40.14)
   - SwiftLint (0.36.0)
+  - TrainClient (1.0.0):
+    - RxSwift (~> 5.0.0)
 
 DEPENDENCIES:
   - Nuke (= 8.3.1)
@@ -15,6 +17,7 @@ DEPENDENCIES:
   - RxSwift (= 5.0.1)
   - SwiftFormat/CLI (from `https://github.com/nicklockwood/SwiftFormat`, tag `0.40.14`)
   - SwiftLint (= 0.36.0)
+  - "TrainClient (from `https://b4dd4198f45ddb5633c39c5baa5a123115e79cb8:x-oauth-basic@github.com/trainsocialnetwork/ios-api.git`, branch `master`)"
 
 SPEC REPOS:
   trunk:
@@ -28,20 +31,27 @@ EXTERNAL SOURCES:
   SwiftFormat:
     :git: https://github.com/nicklockwood/SwiftFormat
     :tag: 0.40.14
+  TrainClient:
+    :branch: master
+    :git: "https://b4dd4198f45ddb5633c39c5baa5a123115e79cb8:x-oauth-basic@github.com/trainsocialnetwork/ios-api.git"
 
 CHECKOUT OPTIONS:
   SwiftFormat:
     :git: https://github.com/nicklockwood/SwiftFormat
     :tag: 0.40.14
+  TrainClient:
+    :commit: f49db1d02690285a8f0f948ef6af15b260b97486
+    :git: "https://b4dd4198f45ddb5633c39c5baa5a123115e79cb8:x-oauth-basic@github.com/trainsocialnetwork/ios-api.git"
 
 SPEC CHECKSUMS:
   Nuke: 85fb80f8df0cb26c28d2f4e0cb7fb93bcd6548d3
   RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
-  RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
+  RxRelay: a168bd6caf712d00c676ac344e9295afc93b418e
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SwiftFormat: 21c9c3c748d5fcece493d8610eee23df15393458
   SwiftLint: fc9859e4e1752340664851f667bb1898b9c90114
+  TrainClient: e0b362b5486b3546ed08f4d448afb5312387fba2
 
-PODFILE CHECKSUM: 2f7b6489e17ce27d55a135fe827e04febe6c40ca
+PODFILE CHECKSUM: d495f0f55a159912e44c1a4343d5be0b9cd06c54
 
 COCOAPODS: 1.8.1
