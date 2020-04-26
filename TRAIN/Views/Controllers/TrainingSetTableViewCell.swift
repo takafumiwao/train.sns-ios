@@ -12,7 +12,6 @@ import UIKit
 class TrainingSetTableViewCell: UITableViewCell {
     @IBOutlet weak var countTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
-    var viewModel = TrainingSetTableViewModel()
     var disposeBag = DisposeBag()
 
     override func awakeFromNib() {

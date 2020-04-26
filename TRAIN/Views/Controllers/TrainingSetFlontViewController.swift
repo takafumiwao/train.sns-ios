@@ -12,6 +12,7 @@ import UIKit
 
 class TrainingSetFlontViewController: UIViewController {
     @IBOutlet weak var trainingAddButton: UIButton!
+    var trainingSetViewController: TrainingSetViewController!
     private let disposeBag = DisposeBag()
     var indexPath: IndexPath?
 
@@ -25,18 +26,55 @@ class TrainingSetFlontViewController: UIViewController {
         // MARK: textFieldの値を検知して有効無効を設定する処理が必要
 
         trainingAddButton.rx.tap.subscribe(onNext: { [weak self] in
-            let nav = self?.navigationController
-            // 一つ前のViewControllerを取得する
-            let prevViewController = nav?.viewControllers[(nav?.viewControllers.count)! - 2] as! TrainingMenuTableViewController
-            prevViewController.checkmarkArray[self!.indexPath!.section].insert(true, at: self!.indexPath!.row)
-            prevViewController.tableView.reloadData()
-            // popする
-            self?.navigationController?.popViewController(animated: true)
+            let set = self!.trainingSetViewController.setArray.value
+            let weight = self!.trainingSetViewController.weightArray.value
+            let count = self!.trainingSetViewController.countArray.value
+            let trainingItem = [set, weight, count]
+            if !(self!.valueCheck(trainingItem)) {
+            } else {
+                UserDefaults.standard.set(trainingItem, forKey: self!.navigationItem.title!)
+                let nav = self?.navigationController
+                // 一つ前のViewControllerを取得する
+                let prevViewController = nav?.viewControllers[(nav?.viewControllers.count)! - 2] as! TrainingMenuTableViewController
+
+                if let array = UserDefaults.standard.value(forKey: "checkmarkArray") as? [[Bool]] {
+                    var checkmarkArray = array
+                    //                checkmarkArray[self!.indexPath!.section].insert(true, at: self!.indexPath!.row)
+                    checkmarkArray[self!.indexPath!.section][self!.indexPath!.row] = true
+                    UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkArray")
+                }
+
+                prevViewController.tableView.reloadData()
+
+                // popする
+                self?.navigationController?.popViewController(animated: true)
+            }
 
         }).disposed(by: disposeBag)
 
         // キーボード設定
         setupKeyboard()
+    }
+
+    func valueCheck(_ trainingItem: [[String]]) -> Bool {
+        print(trainingItem)
+        let set = trainingItem[0]
+        let weight = trainingItem[1]
+        let count = trainingItem[2]
+        var counter = 0
+        var flg = true
+        while set.count > counter {
+            if set[counter] == "SET1" {
+                if weight[counter] != "", count[counter] != "" {
+                    flg = true
+                } else {
+                    flg = false
+                }
+            }
+
+            counter += 1
+        }
+        return flg
     }
 
     func setupKeyboard() {
@@ -54,5 +92,11 @@ class TrainingSetFlontViewController: UIViewController {
             }
 
         }).disposed(by: disposeBag)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goNext" {
+            trainingSetViewController = (segue.destination as! TrainingSetViewController)
+        }
     }
 }

@@ -10,21 +10,31 @@ import RxCocoa
 import RxSwift
 
 class TrainingSetTableViewModel {
-    let disposeBag = DisposeBag()
-    // 重量
-    let weight = BehaviorRelay<String>(value: "")
-    // 回数
-    let count = BehaviorRelay<String>(value: "")
-    // cellを増やすかどうかの判断値
-    let cellAdd: Observable<Bool>
+    var setItemEvent = BehaviorRelay<[String]>(value: [])
+    var items: Observable<[String]> {
+        setItemEvent.asObservable()
+    }
+
+    var setitems = ["SET1"]
+    var flg = true
 
     init() {
-        cellAdd = Observable.combineLatest(weight.asObservable(), count.asObservable()) { weight, count in
-            var result = false
-            if weight != "", count != "" {
-                result = true
+        setItemEvent.accept(setitems)
+    }
+
+    var rx_items: AnyObserver<Bool> {
+        AnyObserver<Bool>(eventHandler: { _ in
+            if self.flg {
+                self.addItem(item: "SET2")
+                print("addItem")
             }
-            return result
-        }
+            self.flg = false
+        })
+    }
+
+    func addItem(item: String) {
+        setitems.append(item)
+        print(setitems.count)
+        flg = false
     }
 }

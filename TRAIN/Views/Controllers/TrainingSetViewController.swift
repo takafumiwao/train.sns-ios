@@ -10,27 +10,60 @@ import RxCocoa
 import RxSwift
 import UIKit
 
-class TrainingSetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TrainingSetViewController: UIViewController, UITableViewDelegate {
     // キーボードの高さを監視する変数
     var keyboardHeightObservable: Observable<CGFloat>?
     // セクション
-    private var trainingSetSection = ["SET1", "SET2", "SET3", "SET4", "SET5", "SET6", "SET7", "SET8", "SET9", "SET10"]
-    private var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
+    private let trainingSetViewModel = TrainingSetTableViewModel()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
+    private let userDefault = UserDefaults.standard
+
+    let setArray = BehaviorRelay<[String]>(value: ["SET1"])
+    let weightArray = BehaviorRelay<[String]>(value: [""])
+    let countArray = BehaviorRelay<[String]>(value: [""])
+
+    private var path: String?
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // userDefautsのパスを取得する
+        let parentVC = parent as? TrainingSetFlontViewController
+        path = parentVC?.navigationItem.title!
+        // userDefaults読み込み
+        if let trainingSetItem = userDefault.value(forKey: (parentVC?.navigationItem.title)!) as? [[String]] {
+            setArray.accept(trainingSetItem[0])
+            weightArray.accept(trainingSetItem[1])
+            countArray.accept(trainingSetItem[2])
+        }
+        // バウンスさせない
+        tableView.bounces = false
+        // カスタムセルの登録
+        tableView.register(UINib(nibName: "TrainingSetTableViewCell", bundle: nil), forCellReuseIdentifier: "TrainingSetTableViewCell")
+        let datasource = TrainingSetViewDataSource()
+        tableView.delegate = datasource
+        // tableViewと値をバウンド
+        Observable.combineLatest(setArray, weightArray, countArray) { TrainingSetViewDataSource.Element(set: $0, weight: $1, count: $2) }.bind(to: tableView.rx.items(dataSource: datasource)).disposed(by: disposeBag)
+        // 値の購読
+        datasource.textArray.subscribe(onNext: { [weak self] textArray in
+            self?.setArray.accept(textArray[0])
+            self?.weightArray.accept(textArray[1])
+            self?.countArray.accept(textArray[2])
+        }).disposed(by: disposeBag)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // キーボドの設定・監視
         keyboardHeightObservable = keyboardHeight()
         keyboardHeightObservable?.subscribe(onNext: { [weak self] float in
             self?.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: float * 1.5, right: 0)
         }).disposed(by: disposeBag)
-        // バウンスさせない
-        tableView.bounces = false
-        // カスタムセルの登録
-        tableView.register(UINib(nibName: "TrainingSetTableViewCell", bundle: nil), forCellReuseIdentifier: "TrainingSetTableViewCell")
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
 
     func keyboardHeight() -> Observable<CGFloat> {
@@ -46,36 +79,5 @@ class TrainingSetViewController: UIViewController, UITableViewDelegate, UITableV
                     }
             ])
             .merge()
-    }
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        trainingSetSection.count
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
-    }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        trainingSetSection[section]
-    }
-
-    // MARK: ここの値の監視がわからない
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TrainingSetTableViewCell", for: indexPath) as! TrainingSetTableViewCell
-        let cellViewModel = cell.viewModel
-        cell.weightTextField.rx.text.orEmpty.bind(to: cellViewModel.weight).disposed(by: cell.disposeBag)
-        cell.countTextField.rx.text.orEmpty.bind(to: cellViewModel.count).disposed(by: cell.disposeBag)
-        cell.viewModel.cellAdd.subscribe(onNext: { _ in }).disposed(by: cell.disposeBag)
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        false
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        tableView.sectionHeaderHeight * 4.0
     }
 }

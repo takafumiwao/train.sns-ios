@@ -22,13 +22,24 @@ class TrainingMenuTableViewController: UITableViewController {
     private let bellyTrainingMenu = ["アブドミナルクランチ", "トーソロウテーション", "ケーブルクランチ", "バーティカルベンチレッグレイズ", "バーベルプッシュクランチ"]
 
     // チェックマークを入れる時に利用するBool値
-    var checkmarkArray = [[false, false, false, false], [false, false, false, false, false], [false, false, false, false], [false, false, false], [false, false], [false, false, false], [false, false, false, false, false]]
+    var checkmarkArray: [[Bool]]!
 
     // トレーニングメニューを格納する配列
     private var trainingMenuArray = [[String]]()
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let array = UserDefaults.standard.value(forKey: "checkmarkArray") as? [[Bool]] {
+            checkmarkArray = array
+        } else {
+            checkmarkArray = [[false, false, false, false], [false, false, false, false, false], [false, false, false, false], [false, false, false], [false, false], [false, false, false], [false, false, false, false, false]]
+            UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkArray")
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // バウンスさせない
         tableView.bounces = false
 
