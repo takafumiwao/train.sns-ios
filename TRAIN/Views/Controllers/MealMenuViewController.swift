@@ -50,10 +50,20 @@ class MealMenuViewController: UIViewController {
             let p = vc.pLabel.text
             let f = vc.fLabel.text
             let c = vc.cLabel.text
-            // ひとつ前のViewControllerを取得する
-            let postViewController = self?.navigationController?.viewControllers[((self?.navigationController?.viewControllers.count)!) - 2] as! PostViewController
-            // 値を渡す
-            postViewController.addMealMenu(name: m!, kcal: k!, p: p!, f: f!, c: c!)
+            let mealArray = [m!, k!, p!, f!, c!]
+//            // ひとつ前のViewControllerを取得する
+//            let postViewController = self?.navigationController?.viewControllers[((self?.navigationController?.viewControllers.count)!) - 2] as! ArticlePostViewController
+            // 値を保存
+            if let mealMenu = UserDefaults.standard.value(forKey: "Meal") {
+                // 値が存在する場合
+                var array = mealMenu as! [[String]]
+                print(array)
+                array.append(mealArray)
+                UserDefaults.standard.set(array, forKey: "Meal")
+            } else {
+                // 値が存在しない場合
+                UserDefaults.standard.set([mealArray], forKey: "Meal")
+            }
             // popする
             self?.navigationController?.popViewController(animated: true)
 

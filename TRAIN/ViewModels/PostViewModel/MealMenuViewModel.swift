@@ -63,9 +63,9 @@ class MealMenuViewModel: MealMenuViewModelType {
     private let disposeBag = DisposeBag()
     private var mealMenuText = BehaviorRelay<String>(value: "")
     private var kcalText = BehaviorRelay<String>(value: "")
-    private var pSlider = BehaviorRelay<String>(value: "50.0")
-    private var fSlider = BehaviorRelay<String>(value: "50.0")
-    private var cSlider = BehaviorRelay<String>(value: "50.0")
+    private var pSlider = BehaviorRelay<String>(value: "")
+    private var fSlider = BehaviorRelay<String>(value: "")
+    private var cSlider = BehaviorRelay<String>(value: "")
 
     init() {
         outputs = self

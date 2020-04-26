@@ -20,6 +20,8 @@ struct PostViewModelInput {
     let dismissButton: Observable<Void>
     // imageViewのtapGesture
     let imageTapGesture: Observable<UITapGestureRecognizer>
+    // 投稿ボタン
+    let articlePostButton: Observable<Void>
 }
 
 protocol PostViewModelOutput {
@@ -27,6 +29,8 @@ protocol PostViewModelOutput {
     var storyBoardName: Driver<String> { get }
     // ホームへ戻る際のパラメータ
     var dismissFlg: Driver<Bool> { get }
+    // ホームへ戻る際のパラメータ
+    var articlePostFlg: Driver<Bool> { get }
 }
 
 protocol PostViewModelType {
@@ -39,6 +43,7 @@ class PostViewModel: PostViewModelType {
     private let disposeBag = DisposeBag()
     private let storyBoard = BehaviorRelay<String>(value: "")
     private let dismiss = BehaviorRelay<Bool>(value: false)
+    private let articlePost = BehaviorRelay<Bool>(value: false)
 
     init() {
         outputs = self
@@ -74,6 +79,13 @@ class PostViewModel: PostViewModelType {
         input.imageTapGesture.subscribe { _ in
             self.getStoryBoardName(name: StoryBoard.CameraRoll.rawValue)
         }.disposed(by: disposeBag)
+
+        input.articlePostButton.subscribe { _ in
+
+            // MARK: 投稿処理
+
+            self.dismiss.accept(true)
+        }.disposed(by: disposeBag)
     }
 
     private func getStoryBoardName(name: String) {
@@ -90,6 +102,12 @@ extension PostViewModel: PostViewModelOutput {
 
     var dismissFlg: Driver<Bool> {
         dismiss.filter { (flg) -> Bool in
+            flg
+        }.asDriver(onErrorJustReturn: false)
+    }
+
+    var articlePostFlg: Driver<Bool> {
+        articlePost.filter { (flg) -> Bool in
             flg
         }.asDriver(onErrorJustReturn: false)
     }

@@ -32,11 +32,6 @@ class DirectInputViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        var pNum: Double = NSString(string: pLabel.text!).doubleValue
-//        var fNum: Double = NSString(string: fLabel.text!).doubleValue
-//        var cNum: Double = NSString(string: cLabel.text!).doubleValue
-
-//        bind()
         mealMenuViewModel = MealMenuViewModel()
         let input = MealMenuViewModelInput(mealMenuTextField: mealMenuTextField.rx.text.orEmpty.asObservable(), kcalTextField: kcalTextField.rx.text.orEmpty.asObservable(), pSlider: pSlider.rx.value.asObservable(), pPlusButton: pPlusButton.rx.tap.asObservable(), pMinusButton: pMinusButton.rx.tap.asObservable(), fSlider: fSlider.rx.value.asObservable(), fPlusButton: fPlusButton.rx.tap.asObservable(), fMinusButton: fMinusButton.rx.tap.asObservable(), cSlider: cSlider.rx.value.asObservable(), cPlusButton: cPlusButton.rx.tap.asObservable(), cMinusButton: cMinusButton.rx.tap.asObservable())
         mealMenuViewModel.setup(input: input)
