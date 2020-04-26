@@ -51,8 +51,8 @@ class TabBarController: UITabBarController {
 
     func goToPostView() {
         // 画面遷移処理
-        let storyBoard = UIStoryboard(name: "PostViewController", bundle: nil)
-        let nxViewController = storyBoard.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
+        let storyBoard = UIStoryboard(name: "ArticlePostViewController", bundle: nil)
+        let nxViewController = storyBoard.instantiateViewController(withIdentifier: "ArticlePostViewController") as! ArticlePostViewController
         let nav = UINavigationController(rootViewController: nxViewController)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
