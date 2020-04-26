@@ -18,5 +18,6 @@ class CameraRollCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         // imageViewの初期化
 //        imageView.image = nil
+//        requestId = nil
     }
 }

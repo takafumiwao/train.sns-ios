@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BHq-uR-WhF">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BHq-uR-WhF">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -61,19 +61,21 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="9oN-N8-UUu" firstAttribute="height" secondItem="PzE-je-H8U" secondAttribute="height" multiplier="0.529716" id="39f-G8-NAb"/>
-                            <constraint firstItem="9oN-N8-UUu" firstAttribute="top" secondItem="d7b-uc-LTp" secondAttribute="bottom" id="BEQ-i8-9oy"/>
+                            <constraint firstItem="9oN-N8-UUu" firstAttribute="leading" secondItem="PzE-je-H8U" secondAttribute="leading" id="8ha-lU-ItC"/>
+                            <constraint firstItem="9oN-N8-UUu" firstAttribute="height" secondItem="PzE-je-H8U" secondAttribute="height" multiplier="0.529716" id="Cap-rs-5L8"/>
                             <constraint firstItem="d7b-uc-LTp" firstAttribute="leading" secondItem="PzE-je-H8U" secondAttribute="leading" id="DAl-3X-6mL"/>
+                            <constraint firstItem="9oN-N8-UUu" firstAttribute="top" secondItem="d7b-uc-LTp" secondAttribute="bottom" id="Hq0-lf-cyz"/>
                             <constraint firstItem="d7b-uc-LTp" firstAttribute="height" secondItem="PzE-je-H8U" secondAttribute="height" multiplier="0.470284" id="QIW-wN-e1N"/>
                             <constraint firstItem="d7b-uc-LTp" firstAttribute="width" secondItem="PzE-je-H8U" secondAttribute="width" id="c9l-OL-PZK"/>
-                            <constraint firstItem="9oN-N8-UUu" firstAttribute="leading" secondItem="PzE-je-H8U" secondAttribute="leading" id="f85-RY-1uh"/>
+                            <constraint firstItem="9oN-N8-UUu" firstAttribute="width" secondItem="PzE-je-H8U" secondAttribute="width" id="fTT-8D-JTV"/>
                             <constraint firstItem="d7b-uc-LTp" firstAttribute="top" secondItem="PzE-je-H8U" secondAttribute="top" id="kHD-oY-VeD"/>
-                            <constraint firstItem="9oN-N8-UUu" firstAttribute="width" secondItem="PzE-je-H8U" secondAttribute="width" id="o7Y-DZ-IV5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PzE-je-H8U"/>
                     </view>
                     <navigationItem key="navigationItem" title="画像を選択" id="mgA-zd-RNF">
-                        <barButtonItem key="rightBarButtonItem" title="決定" id="kaS-0G-KXr"/>
+                        <barButtonItem key="rightBarButtonItem" title="決定" id="kaS-0G-KXr">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="9oN-N8-UUu" id="TwZ-s5-2Ux"/>

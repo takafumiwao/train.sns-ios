@@ -7,20 +7,33 @@
 //
 
 import AVFoundation
+import RxSwift
 import UIKit
 
 class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
+    private let disposeBag = DisposeBag()
     // カメラ等のキャプチャに関連するニュ出力を管理するクラス
     var session: AVCaptureSession!
     // 写真データを取得するクラス
     var output: AVCapturePhotoOutput?
     // カメラでキャプチャした映像をプレビューするクラス
     var previewLayer: AVCaptureVideoPreviewLayer?
+
+    var currentPhotoSubject: PublishSubject<UIImage>?
     // カメラでキャプチャした映像をプレビューするエリア
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var shutterButton: UIButton!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        shutterButton.layer.cornerRadius = 0.5 * shutterButton.bounds.size.width
+        shutterButton.clipsToBounds = true
+        cancelButton.rx.tap.subscribe(onNext: {
+            // popする
+            self.navigationController?.popViewController(animated: true)
+
+        }).disposed(by: disposeBag)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -50,9 +63,9 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     previewLayer = AVCaptureVideoPreviewLayer(session: session)
                     // cameraViewの境界をプレビューレイヤーのフレームに設定
                     previewLayer?.frame = cameraView.bounds
+
                     // アスペクト比変更とレイヤー収納の有無
                     previewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill // アスペクト比を変ない。レイヤーからはみ出した部分は隠す。
-                    // previewLayer?.videoGravity = AVLayerVideoGravityResizeAspect  // アスペクト比を変えない。はみ出さないようにレイヤー内に収める。
 
                     // cameraViewのサブレイヤーにプレビューレイヤーを追加
                     cameraView.layer.addSublayer(previewLayer!)
@@ -73,16 +86,13 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         output?.capturePhoto(with: settingsForMonitoring, delegate: self)
     }
 
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
-        if let photoSampleBuffer = photoSampleBuffer {
-            // JPEG形式で画像データを取得
-            let photoData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer, previewPhotoSampleBuffer: previewPhotoSampleBuffer)
-            // UIImage型に変換
-            let image = UIImage(data: photoData!)
-
-            // フォトライブラリに保存
-            UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
-        }
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        let image = UIImage(data: photo.fileDataRepresentation()!)
+        // フォトライブラリに保存
+        UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+        currentPhotoSubject!.onNext(image!)
+        // 投稿画面に遷移
+        navigationController?.popToRootViewController(animated: true)
     }
 
     override func didReceiveMemoryWarning() {

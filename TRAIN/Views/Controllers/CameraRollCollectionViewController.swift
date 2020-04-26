@@ -31,7 +31,7 @@ class CameraRollCollectionViewController: UIViewController {
 
         // Cellサイズ
         let cellWidth = viewWidth / 3
-        layout.itemSize = CGSize(width: cellWidth, height: cellWidth)
+        layout.itemSize = CGSize(width: cellWidth, height: collectionView.frame.height / 3)
         layout.minimumInteritemSpacing = minimumInteritemSpacing
         layout.minimumLineSpacing = minimumLineSpacing
         layout.sectionInset = sectionInset
@@ -57,6 +57,7 @@ class CameraRollCollectionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.register(UINib(nibName: "CameraRollFirstCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CameraRollFirstCollectionViewCell")
         // 選択したイメージの購読
         selectedPhoto.subscribe(onNext: { [weak self] photo in
             DispatchQueue.main.async {
@@ -92,15 +93,21 @@ class CameraRollCollectionViewController: UIViewController {
                 // imageを指定
                 let assets = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: nil)
                 assets.enumerateObjects { object, _, _ in
+
                     self?.images.append(object)
+                    self?.images.reverse()
+                    DispatchQueue.main.async {
+                        self?.collectionView.reloadData()
+                    }
                 }
-//                self?.images.reverse()
+
                 DispatchQueue.main.async {
                     self?.collectionView.reloadData()
                 }
 
             } else if status == .denied {
-                // MARK: 拒否の場合は？
+                // 投稿画面に戻る
+                self?.navigationController?.popViewController(animated: true)
             }
         }
     }
@@ -113,26 +120,32 @@ extension CameraRollCollectionViewController: UICollectionViewDelegate, UICollec
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CameraRollCollectionViewCell", for: indexPath) as? CameraRollCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-        // cellを使い回す前に前のrequestをキャンセルして画像を削除
-        let imageManager = PHImageManager.default()
-        if let requestId = cell.requestId {
-            imageManager.cancelImageRequest(requestId)
-        }
-//        cell.imageView.image = nil
-        // 最初のセルはカメラ撮影遷移画像を差し込む
-
-        // MARK: 二回目の遷移で見えなくなる
-
-        if indexPath.row == 0 {
-            cell.imageView.image = UIImage(named: "camera.jpg")
+        if indexPath.item == 0, indexPath.section == 0, indexPath.row == 0 {
+            // cellの一番目は必ずカメラの画像に設定する
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CameraRollFirstCollectionViewCell", for: indexPath) as? CameraRollFirstCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            // 初期化
+            cell.imageView.image = nil
+            cell.imageView.image = UIImage(named: "camera.png")
             cell.imageView.contentMode = .scaleAspectFill
+
+            return cell
+
         } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CameraRollCollectionViewCell", for: indexPath) as? CameraRollCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            let imageManager = PHImageManager.default()
+            if let requestId = cell.requestId {
+                imageManager.cancelImageRequest(requestId)
+            }
             let assetIndexPath = indexPath.row - 1
             let asset = images[assetIndexPath]
-            cell.requestId = imageManager.requestImage(for: asset, targetSize: CGSize(width: 480, height: 480), contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
+            let option = PHImageRequestOptions()
+            option.deliveryMode = .highQualityFormat
+            // 画像取得
+            cell.requestId = imageManager.requestImage(for: asset, targetSize: CGSize(width: 480, height: 480), contentMode: .aspectFill, options: option, resultHandler: { image, _ in
                 DispatchQueue.main.async {
                     if assetIndexPath == 0 {
                         self.selectedPhotoSubject.onNext(image)
@@ -141,17 +154,16 @@ extension CameraRollCollectionViewController: UICollectionViewDelegate, UICollec
                     cell.imageView.contentMode = .scaleAspectFill
                 }
             })
+            return cell
         }
-
-        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.item == 0 {
-            selectedPhotoSubject.onNext(UIImage(named: "camera")!)
             // 撮影画面に遷移
             let storyBoard = UIStoryboard(name: "CameraViewController", bundle: nil)
-            let nxViewController = storyBoard.instantiateViewController(withIdentifier: "CameraViewController")
+            let nxViewController = storyBoard.instantiateViewController(withIdentifier: "CameraViewController") as! CameraViewController
+            nxViewController.currentPhotoSubject = currentPhotoSubject
             navigationController?.pushViewController(nxViewController, animated: true)
 
         } else {
