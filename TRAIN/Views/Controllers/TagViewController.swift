@@ -93,14 +93,16 @@ class TagViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         if let tags = UserDefaults.standard.value(forKey: "Tag") as? [String] {
-            tagAddButton.isEnabled = true
-            addTagViewHeight.constant = recommendedCollectionView.frame.height / 3.5
-            recommendedCollectionViewHeight.constant = recommendedCollectionViewHeight.constant - addTagViewHeight.constant
-            incrementTableViewHeight.constant = incrementTableViewHeight.constant - addTagViewHeight.constant / 3.5
-            changeFlg = false
-            addTagViewController?.addTagItem = tags
-            addTagViewController?.addTagItemCollectionView.reloadData()
-            tagAddButton.isEnabled = true
+            if tags != [] {
+                tagAddButton.isEnabled = true
+                addTagViewHeight.constant = recommendedCollectionView.frame.height / 3.5
+                recommendedCollectionViewHeight.constant = recommendedCollectionViewHeight.constant - addTagViewHeight.constant
+                incrementTableViewHeight.constant = incrementTableViewHeight.constant - addTagViewHeight.constant / 3.5
+                changeFlg = false
+                addTagViewController?.addTagItem = tags
+                addTagViewController?.addTagItemCollectionView.reloadData()
+                tagAddButton.isEnabled = true
+            }
         } else {
             tagAddButton.isEnabled = false
         }

@@ -101,6 +101,10 @@ class ArticleViewController: UIViewController {
         }
         // タグを取得する
         if let tag = UserDefaults.standard.value(forKey: "Tag") as? [String] {
+            if tag == [] {
+                articleTag.setTitle("タグを追加", for: .normal)
+                return
+            }
             var tags = ""
             var count = 0
             while count <= tag.count - 1 {
