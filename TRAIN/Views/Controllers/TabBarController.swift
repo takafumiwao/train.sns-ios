@@ -14,6 +14,7 @@ class TabBarController: UITabBarController {
     private let disposeBag = DisposeBag()
     // 投稿画面に遷移するボタン
     private let postButton = UIButton()
+
     // safeArea
     var topSafeAreaHeight: CGFloat = 0
     var bottomSafeAreaHeight: CGFloat = 0
@@ -50,11 +51,39 @@ class TabBarController: UITabBarController {
     }
 
     func goToPostView() {
-        // 画面遷移処理
-        let storyBoard = UIStoryboard(name: "ArticlePostViewController", bundle: nil)
-        let nxViewController = storyBoard.instantiateViewController(withIdentifier: "ArticlePostViewController") as! ArticlePostViewController
-        let nav = UINavigationController(rootViewController: nxViewController)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true, completion: nil)
+        if UserDefaults.standard.value(forKey: "userIdentifier") != nil {
+            // 画面遷移処理
+            let storyBoard = UIStoryboard(name: "ArticlePostViewController", bundle: nil)
+            let nxViewController = storyBoard.instantiateViewController(withIdentifier: "ArticlePostViewController") as! ArticlePostViewController
+            let nav = UINavigationController(rootViewController: nxViewController)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: true, completion: nil)
+        } else {
+            let storyBoard = UIStoryboard(name: "AuthModalViewController", bundle: nil)
+            let nxViewController = storyBoard.instantiateViewController(withIdentifier: "AuthModalViewController") as! AuthModalViewController
+            nxViewController.modalPresentationStyle = .custom
+            nxViewController.transitioningDelegate = self
+            nxViewController.presentationController?.delegate = self
+            present(nxViewController, animated: true, completion: nil)
+        }
+    }
+}
+
+extension TabBarController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        CustomPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+extension TabBarController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        if UserDefaults.standard.value(forKey: "userIdentifier") != nil {
+            // 画面遷移処理
+            let storyBoard = UIStoryboard(name: "ArticlePostViewController", bundle: nil)
+            let nxViewController = storyBoard.instantiateViewController(withIdentifier: "ArticlePostViewController") as! ArticlePostViewController
+            let nav = UINavigationController(rootViewController: nxViewController)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: true, completion: nil)
+        }
     }
 }

@@ -11,6 +11,10 @@ import Foundation
 extension UserDefaults {
     // UserDefautsの全ての値を削除する
     func removeAll() {
-        dictionaryRepresentation().forEach { removeObject(forKey: $0.key) }
+        dictionaryRepresentation().forEach {
+            if $0.key != "userIdentifier" {
+                removeObject(forKey: $0.key)
+            }
+        }
     }
 }
