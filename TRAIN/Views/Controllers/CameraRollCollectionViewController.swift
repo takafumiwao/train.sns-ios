@@ -67,7 +67,8 @@ class CameraRollCollectionViewController: UIViewController {
         }).disposed(by: disposeBag)
         // 決定ボタンのアクション
         decisionButton.rx.tap.subscribe { _ in
-            self.currentPhotoSubject.onNext(self.imageView.image!)
+            guard let image = self.imageView.image else { return }
+            self.currentPhotoSubject.onNext(image)
             self.navigationController?.popViewController(animated: true)
         }.disposed(by: disposeBag)
 
@@ -90,20 +91,30 @@ class CameraRollCollectionViewController: UIViewController {
 
             if status == .authorized {
                 // 許可された場合のみ読み込み開始
+                // データの並べ替え条件
+                let options = PHFetchOptions()
+                options.sortDescriptors = [
+                    NSSortDescriptor(key: "creationDate", ascending: false)
+                ]
                 // imageを指定
-                let assets = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: nil)
-                assets.enumerateObjects { object, _, _ in
-
-                    self?.images.append(object)
-                    self?.images.reverse()
-                    DispatchQueue.main.async {
-                        self?.collectionView.reloadData()
-                    }
+                let assets = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: options)
+                assets.enumerateObjects { (asset, _, _) -> Void in
+                    self?.images.append(asset)
                 }
 
                 DispatchQueue.main.async {
                     self?.collectionView.reloadData()
                 }
+
+                let imageManager = PHImageManager.default()
+                let option = PHImageRequestOptions()
+                option.deliveryMode = .highQualityFormat
+                guard let images = self?.images else {
+                    return
+                }
+                imageManager.requestImage(for: images[0], targetSize: CGSize(width: 480, height: 480), contentMode: .aspectFill, options: option, resultHandler: { image, _ in
+                    self?.selectedPhotoSubject.onNext(image)
+                })
 
             } else if status == .denied {
                 // 投稿画面に戻る
@@ -140,19 +151,15 @@ extension CameraRollCollectionViewController: UICollectionViewDelegate, UICollec
             if let requestId = cell.requestId {
                 imageManager.cancelImageRequest(requestId)
             }
+            cell.imageView.image = nil
             let assetIndexPath = indexPath.row - 1
             let asset = images[assetIndexPath]
             let option = PHImageRequestOptions()
             option.deliveryMode = .highQualityFormat
             // 画像取得
             cell.requestId = imageManager.requestImage(for: asset, targetSize: CGSize(width: 480, height: 480), contentMode: .aspectFill, options: option, resultHandler: { image, _ in
-                DispatchQueue.main.async {
-                    if assetIndexPath == 0 {
-                        self.selectedPhotoSubject.onNext(image)
-                    }
-                    cell.imageView.image = image
-                    cell.imageView.contentMode = .scaleAspectFill
-                }
+                cell.imageView.image = image
+                cell.imageView.contentMode = .scaleAspectFill
             })
             return cell
         }
@@ -162,16 +169,20 @@ extension CameraRollCollectionViewController: UICollectionViewDelegate, UICollec
         if indexPath.item == 0 {
             // 撮影画面に遷移
             let storyBoard = UIStoryboard(name: "CameraViewController", bundle: nil)
-            let nxViewController = storyBoard.instantiateViewController(withIdentifier: "CameraViewController") as! CameraViewController
+            guard let nxViewController = storyBoard.instantiateViewController(withIdentifier: "CameraViewController") as? CameraViewController
+            else { return }
             nxViewController.currentPhotoSubject = currentPhotoSubject
             navigationController?.pushViewController(nxViewController, animated: true)
 
         } else {
+            guard images.count >= indexPath.item else {
+                return
+            }
             // 画像選択処理
             let selectedAssets = images[indexPath.item - 1]
             PHImageManager.default().requestImage(for: selectedAssets, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFill, options: nil) { [weak self] image, info in
                 guard let info = info else { return }
-                let isDegradedImage = info["PHImageResultIsDegradedKey"] as! Bool
+                guard let isDegradedImage = info["PHImageResultIsDegradedKey"] as? Bool else { return }
 
                 if !isDegradedImage {
                     if let image = image {
