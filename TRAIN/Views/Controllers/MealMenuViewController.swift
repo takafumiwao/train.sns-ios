@@ -9,7 +9,7 @@
 import RxSwift
 import UIKit
 
-class MealMenuViewController: UIViewController {
+class MealMenuViewController: UIViewController, UINavigationControllerDelegate {
     private let disposeBag = DisposeBag()
     var mealMenuViewModel: MealMenuViewModel!
     var topSafeAreaHeight: CGFloat = 0
@@ -23,10 +23,14 @@ class MealMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let nvVc = navigationController else {
+            return
+        }
+        nvVc.delegate = self
         mealAddButton.isEnabled = false
         mealAddButton.backgroundColor = .darkGray
-        let diVC = children[1] as! DirectInputViewController
-        let piVC = children[0] as! PastInputViewController
+        guard let diVC = children[1] as? DirectInputViewController else { return }
+        guard let piVC = children[0] as? PastInputViewController else { return }
         diVC.mealAddButton = mealAddButton
         piVC.mealAddButton = mealAddButton
         piVC.segmentedControl = seg_
@@ -43,21 +47,19 @@ class MealMenuViewController: UIViewController {
         }).disposed(by: disposeBag)
         // 追加するボタン
         mealAddButton.rx.tap.subscribe(onNext: { [weak self] in
-            let vc = self!.children[1] as! DirectInputViewController
-
-            let m = vc.mealMenuTextField.text
-            let k = vc.kcalTextField.text
-            let p = vc.pLabel.text
-            let f = vc.fLabel.text
-            let c = vc.cLabel.text
-            let mealArray = [m!, k!, p!, f!, c!]
-//            // ひとつ前のViewControllerを取得する
-//            let postViewController = self?.navigationController?.viewControllers[((self?.navigationController?.viewControllers.count)!) - 2] as! ArticlePostViewController
+            guard let self = self else { return }
+            guard let vc = self.children[1] as? DirectInputViewController else { return }
+            guard let m = vc.mealMenuTextField.text,
+                let k = vc.kcalTextField.text,
+                let p = vc.pLabel.text,
+                let f = vc.fLabel.text,
+                let c = vc.cLabel.text else { return }
+            let mealArray = [m, k, p, f, c]
             // 値を保存
             if let mealMenu = UserDefaults.standard.value(forKey: "Meal") {
                 // 値が存在する場合
-                var array = mealMenu as! [[String]]
-                print(array)
+                guard let mealMenu = mealMenu as? [[String]] else { return }
+                var array = mealMenu
                 array.append(mealArray)
                 UserDefaults.standard.set(array, forKey: "Meal")
             } else {
@@ -65,7 +67,7 @@ class MealMenuViewController: UIViewController {
                 UserDefaults.standard.set([mealArray], forKey: "Meal")
             }
             // popする
-            self?.navigationController?.popViewController(animated: true)
+            self.navigationController?.popViewController(animated: true)
 
         }).disposed(by: disposeBag)
     }
@@ -76,14 +78,17 @@ class MealMenuViewController: UIViewController {
     }
 
     private lazy var initViewLayout: Void = {
-        if #available(iOS 11.0, *) {
-            // viewDidLayoutSubviewsではSafeAreaの取得ができている
-            topSafeAreaHeight = self.view.safeAreaInsets.top
-            bottomSafeAreaHeight = self.view.safeAreaInsets.bottom
-            seg_.frame = CGRect(x: 0, y: topSafeAreaHeight, width: view.frame.width, height: self.view.frame.height / 12)
-            mealAddButton.layer.cornerRadius = 10.0
-            pastContainerView.frame = CGRect(x: 0, y: seg_.frame.origin.y + seg_.frame.height, width: view.frame.width, height: view.frame.height - seg_.frame.height - (mealAddButton.frame.height * 2) - topSafeAreaHeight - bottomSafeAreaHeight)
-            directContainerView.frame = CGRect(x: 0, y: seg_.frame.origin.y + seg_.frame.height, width: view.frame.width, height: view.frame.height - seg_.frame.height - (mealAddButton.frame.height * 2) - topSafeAreaHeight - bottomSafeAreaHeight)
-        }
+        // viewDidLayoutSubviewsではSafeAreaの取得ができている
+        topSafeAreaHeight = self.view.safeAreaInsets.top
+        bottomSafeAreaHeight = self.view.safeAreaInsets.bottom
+        seg_.frame = CGRect(x: 0, y: topSafeAreaHeight, width: view.frame.width, height: self.view.frame.height / 12)
+        mealAddButton.layer.cornerRadius = 10.0
+        pastContainerView.frame = CGRect(x: 0, y: seg_.frame.origin.y + seg_.frame.height, width: view.frame.width, height: view.frame.height - seg_.frame.height - (mealAddButton.frame.height * 2) - topSafeAreaHeight - bottomSafeAreaHeight)
+        directContainerView.frame = CGRect(x: 0, y: seg_.frame.origin.y + seg_.frame.height, width: view.frame.width, height: view.frame.height - seg_.frame.height - (mealAddButton.frame.height * 2) - topSafeAreaHeight - bottomSafeAreaHeight)
     }()
+
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        guard let apVC = viewController as? PostArticleViewController else { return }
+        apVC.settingParts()
+    }
 }

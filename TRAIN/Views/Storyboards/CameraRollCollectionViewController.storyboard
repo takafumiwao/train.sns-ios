@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BHq-uR-WhF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BHq-uR-WhF">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -73,9 +73,7 @@
                         <viewLayoutGuide key="safeArea" id="PzE-je-H8U"/>
                     </view>
                     <navigationItem key="navigationItem" title="画像を選択" id="mgA-zd-RNF">
-                        <barButtonItem key="rightBarButtonItem" title="決定" id="kaS-0G-KXr">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="決定" id="kaS-0G-KXr"/>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="9oN-N8-UUu" id="TwZ-s5-2Ux"/>

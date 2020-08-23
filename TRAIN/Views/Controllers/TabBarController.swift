@@ -53,8 +53,8 @@ class TabBarController: UITabBarController {
     func goToPostView() {
         if UserDefaults.standard.value(forKey: "userIdentifier") != nil {
             // 画面遷移処理
-            let storyBoard = UIStoryboard(name: "ArticlePostViewController", bundle: nil)
-            let nxViewController = storyBoard.instantiateViewController(withIdentifier: "ArticlePostViewController") as! ArticlePostViewController
+            let storyBoard = UIStoryboard(name: "PostArticleViewController", bundle: nil)
+            let nxViewController = storyBoard.instantiateViewController(withIdentifier: "PostArticleViewController")
             let nav = UINavigationController(rootViewController: nxViewController)
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)
@@ -79,8 +79,8 @@ extension TabBarController: UIAdaptivePresentationControllerDelegate {
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         if UserDefaults.standard.value(forKey: "userIdentifier") != nil {
             // 画面遷移処理
-            let storyBoard = UIStoryboard(name: "ArticlePostViewController", bundle: nil)
-            let nxViewController = storyBoard.instantiateViewController(withIdentifier: "ArticlePostViewController") as! ArticlePostViewController
+            let storyBoard = UIStoryboard(name: "PostArticleViewController", bundle: nil)
+            let nxViewController = storyBoard.instantiateViewController(withIdentifier: "PostArticleViewController")
             let nav = UINavigationController(rootViewController: nxViewController)
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)

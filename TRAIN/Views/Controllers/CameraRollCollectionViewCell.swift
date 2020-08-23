@@ -17,7 +17,7 @@ class CameraRollCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         // imageViewの初期化
-//        imageView.image = nil
-//        requestId = nil
+        imageView.image = nil
+        requestId = nil
     }
 }

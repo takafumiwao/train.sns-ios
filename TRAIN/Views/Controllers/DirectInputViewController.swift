@@ -11,8 +11,8 @@ import RxSwift
 import UIKit
 
 class DirectInputViewController: UIViewController {
-    private var disposeBag = DisposeBag()
-    var mealMenuViewModel: MealMenuViewModel!
+    private let disposeBag = DisposeBag()
+    private var mealMenuViewModel = MealMenuViewModel()
     var mealAddButton: UIButton?
 
     @IBOutlet weak var mealMenuTextField: UITextField!
@@ -32,6 +32,14 @@ class DirectInputViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        settingViewModel()
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+
+    func settingViewModel() {
         mealMenuViewModel = MealMenuViewModel()
         let input = MealMenuViewModelInput(mealMenuTextField: mealMenuTextField.rx.text.orEmpty.asObservable(), kcalTextField: kcalTextField.rx.text.orEmpty.asObservable(), pSlider: pSlider.rx.value.asObservable(), pPlusButton: pPlusButton.rx.tap.asObservable(), pMinusButton: pMinusButton.rx.tap.asObservable(), fSlider: fSlider.rx.value.asObservable(), fPlusButton: fPlusButton.rx.tap.asObservable(), fMinusButton: fMinusButton.rx.tap.asObservable(), cSlider: cSlider.rx.value.asObservable(), cPlusButton: cPlusButton.rx.tap.asObservable(), cMinusButton: cMinusButton.rx.tap.asObservable())
         mealMenuViewModel.setup(input: input)
@@ -69,28 +77,24 @@ class DirectInputViewController: UIViewController {
             self.cSlider.value = NSString(string: value).floatValue
         }).disposed(by: disposeBag)
         mealMenuViewModel.kcal.asDriver().drive(onNext: { text in
-            if text != "", self.mealMenuTextField.text != "" {
-                self.mealAddButton?.isEnabled = true
-                self.mealAddButton?.backgroundColor = .blue
-            } else {
+            if text.isEmpty || self.mealMenuTextField.text?.isEmpty ?? false {
                 self.mealAddButton?.isEnabled = false
                 self.mealAddButton?.backgroundColor = .darkGray
+            } else {
+                self.mealAddButton?.isEnabled = true
+                self.mealAddButton?.backgroundColor = .blue
             }
             self.kcalTextField.text = text
         }).disposed(by: disposeBag)
         mealMenuViewModel.mealMenu.asDriver().drive(onNext: { text in
-            if text != "", self.kcalTextField.text != "" {
-                self.mealAddButton?.isEnabled = true
-                self.mealAddButton?.backgroundColor = .blue
-            } else {
+            if text.isEmpty || self.kcalTextField.text?.isEmpty ?? false {
                 self.mealAddButton?.isEnabled = false
                 self.mealAddButton?.backgroundColor = .darkGray
+            } else {
+                self.mealAddButton?.isEnabled = true
+                self.mealAddButton?.backgroundColor = .blue
             }
             self.mealMenuTextField.text = text
         }).disposed(by: disposeBag)
-    }
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
     }
 }

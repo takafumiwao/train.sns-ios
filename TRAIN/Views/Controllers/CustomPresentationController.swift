@@ -10,8 +10,8 @@ import UIKit
 
 class CustomPresentationController: UIPresentationController {
     // 呼び出し元のView Controller の上に重ねるオーバレイView
-    var overlayView = UIView()
-    var margin = (x: CGFloat(30), y: CGFloat(220))
+    private let overlayView = UIView()
+    private var margin = (x: CGFloat(30), y: CGFloat(220))
 
     // 表示トランジション開始前に呼ばれる
     override func presentationTransitionWillBegin() {
@@ -25,14 +25,20 @@ class CustomPresentationController: UIPresentationController {
         containerView.insertSubview(overlayView, at: 0)
 
         // トランジションを実行
-        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { [weak self] _ in
+        guard let psTransition = presentingViewController.transitionCoordinator else {
+            return
+        }
+        psTransition.animate(alongsideTransition: { [weak self] _ in
             self?.overlayView.alpha = 0.7
         }, completion: nil)
     }
 
     // 非表示トランジション開始前に呼ばれる
     override func dismissalTransitionWillBegin() {
-        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { [weak self] _ in
+        guard let psTransition = presentingViewController.transitionCoordinator else {
+            return
+        }
+        psTransition.animate(alongsideTransition: { [weak self] _ in
             self?.overlayView.alpha = 0.0
         }, completion: nil)
     }
@@ -66,9 +72,10 @@ class CustomPresentationController: UIPresentationController {
     // レイアウト開始前に呼ばれる
     override func containerViewWillLayoutSubviews() {
         overlayView.frame = containerView!.bounds
-        presentedView?.frame = frameOfPresentedViewInContainerView
-        presentedView?.layer.cornerRadius = 10
-        presentedView?.clipsToBounds = true
+        guard let psView = presentedView else { return }
+        psView.frame = frameOfPresentedViewInContainerView
+        psView.layer.cornerRadius = 10
+        psView.clipsToBounds = true
     }
 
     // レイアウト開始後に呼ばれる
@@ -79,7 +86,7 @@ class CustomPresentationController: UIPresentationController {
     }
 
     // overlayViewをタップした時に呼ばれる
-    @objc func overlayViewDidTouch(_ sender: UITapGestureRecognizer) {
+    @objc private func overlayViewDidTouch(_ sender: UITapGestureRecognizer) {
         presentedViewController.dismiss(animated: true, completion: nil)
     }
 }

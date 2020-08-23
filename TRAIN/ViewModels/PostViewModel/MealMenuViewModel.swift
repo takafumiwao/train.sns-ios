@@ -54,12 +54,12 @@ protocol MealMenuViewModelOutput {
 }
 
 protocol MealMenuViewModelType {
-    var outputs: MealMenuViewModelOutput? { get }
+    var outputs: MealMenuViewModelOutput { get }
     func setup(input: MealMenuViewModelInput)
 }
 
 class MealMenuViewModel: MealMenuViewModelType {
-    var outputs: MealMenuViewModelOutput?
+    var outputs: MealMenuViewModelOutput { self }
     private let disposeBag = DisposeBag()
     private var mealMenuText = BehaviorRelay<String>(value: "")
     private var kcalText = BehaviorRelay<String>(value: "")
@@ -67,53 +67,63 @@ class MealMenuViewModel: MealMenuViewModelType {
     private var fSlider = BehaviorRelay<String>(value: "")
     private var cSlider = BehaviorRelay<String>(value: "")
 
-    init() {
-        outputs = self
-    }
-
     // セットアップ
     func setup(input: MealMenuViewModelInput) {
-        input.mealMenuTextField.subscribe(onNext: { [weak self] text in
-            self?.mealMenuText.accept(text)
-        }).disposed(by: disposeBag)
-        input.kcalTextField.subscribe(onNext: { [weak self] text in
-            self?.kcalText.accept(text)
-        }).disposed(by: disposeBag)
+        input.mealMenuTextField.bind(to: mealMenuText).disposed(by: disposeBag)
+
+        input.kcalTextField.bind(to: kcalText).disposed(by: disposeBag)
+
         input.pSlider.subscribe(onNext: { [weak self] value in
-            self?.pSlider.accept((self?.floatToString(float: value))!)
-            self?.kcalText.accept((self?.kcalNum())!)
+            guard let self = self else { return }
+            self.pSlider.accept(self.floatToString(float: value))
+            self.kcalText.accept(self.kcalNum())
         }).disposed(by: disposeBag)
+
         input.fSlider.subscribe(onNext: { [weak self] value in
-            self?.fSlider.accept((self?.floatToString(float: value))!)
-            self?.kcalText.accept((self?.kcalNum())!)
+            guard let self = self else { return }
+            self.fSlider.accept(self.floatToString(float: value))
+            self.kcalText.accept(self.kcalNum())
         }).disposed(by: disposeBag)
+
         input.cSlider.subscribe(onNext: { [weak self] value in
-            self?.cSlider.accept((self?.floatToString(float: value))!)
-            self?.kcalText.accept((self?.kcalNum())!)
+            guard let self = self else { return }
+            self.cSlider.accept(self.floatToString(float: value))
+            self.kcalText.accept(self.kcalNum())
         }).disposed(by: disposeBag)
         input.pPlusButton.subscribe(onNext: { [weak self] in
-            self?.pSlider.accept(self!.plus(string: (self?.pSlider)!))
-            self?.kcalText.accept((self?.kcalNum())!)
+            guard let self = self else { return }
+            self.pSlider.accept(self.plus(string: self.pSlider))
+            self.kcalText.accept(self.kcalNum())
         }).disposed(by: disposeBag)
+
         input.pMinusButton.subscribe(onNext: { [weak self] in
-            self?.pSlider.accept(self!.minus(string: (self?.pSlider)!))
-            self?.kcalText.accept((self?.kcalNum())!)
+            guard let self = self else { return }
+            self.pSlider.accept(self.minus(string: self.pSlider))
+            self.kcalText.accept(self.kcalNum())
         }).disposed(by: disposeBag)
+
         input.fPlusButton.subscribe(onNext: { [weak self] in
-            self?.fSlider.accept(self!.plus(string: (self?.fSlider)!))
-            self?.kcalText.accept((self?.kcalNum())!)
+            guard let self = self else { return }
+            self.fSlider.accept(self.plus(string: self.fSlider))
+            self.kcalText.accept(self.kcalNum())
         }).disposed(by: disposeBag)
+
         input.fMinusButton.subscribe(onNext: { [weak self] in
-            self?.fSlider.accept(self!.minus(string: (self?.fSlider)!))
-            self?.kcalText.accept((self?.kcalNum())!)
+            guard let self = self else { return }
+            self.fSlider.accept(self.minus(string: self.fSlider))
+            self.kcalText.accept(self.kcalNum())
         }).disposed(by: disposeBag)
+
         input.cPlusButton.subscribe(onNext: { [weak self] in
-            self?.cSlider.accept(self!.plus(string: (self?.cSlider)!))
-            self?.kcalText.accept((self?.kcalNum())!)
+            guard let self = self else { return }
+            self.cSlider.accept(self.plus(string: self.cSlider))
+            self.kcalText.accept(self.kcalNum())
         }).disposed(by: disposeBag)
+
         input.cMinusButton.subscribe(onNext: { [weak self] in
-            self?.cSlider.accept(self!.minus(string: (self?.cSlider)!))
-            self?.kcalText.accept((self?.kcalNum())!)
+            guard let self = self else { return }
+            self.cSlider.accept(self.minus(string: self.cSlider))
+            self.kcalText.accept(self.kcalNum())
         }).disposed(by: disposeBag)
     }
 

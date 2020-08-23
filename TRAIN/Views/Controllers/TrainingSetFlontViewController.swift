@@ -12,7 +12,7 @@ import UIKit
 
 class TrainingSetFlontViewController: UIViewController {
     @IBOutlet weak var trainingAddButton: UIButton!
-    var trainingSetViewController: TrainingSetViewController!
+    private var trainingSetViewController: TrainingSetViewController!
     private let disposeBag = DisposeBag()
     var indexPath: IndexPath?
 
@@ -22,32 +22,38 @@ class TrainingSetFlontViewController: UIViewController {
         trainingAddButton.frame = CGRect(x: view.frame.width - trainingAddButton.frame.width, y: view.frame.height - trainingAddButton.frame.height, width: view.frame.width / 4, height: view.frame.width / 4)
 
         // トレーニング追加ボタンアクション
-
-        // MARK: textFieldの値を検知して有効無効を設定する処理が必要
-
         trainingAddButton.rx.tap.subscribe(onNext: { [weak self] in
-            let set = self!.trainingSetViewController.setArray.value
-            let weight = self!.trainingSetViewController.weightArray.value
-            let count = self!.trainingSetViewController.countArray.value
+            guard let self = self else { return }
+            let set = self.trainingSetViewController.setArray.value
+            let weight = self.trainingSetViewController.weightArray.value
+            let count = self.trainingSetViewController.countArray.value
             let trainingItem = [set, weight, count]
-            if !(self!.valueCheck(trainingItem)) {
-            } else {
-                UserDefaults.standard.set(trainingItem, forKey: self!.navigationItem.title!)
-                let nav = self?.navigationController
+            if self.valueCheck(trainingItem) {
+                guard let key = self.navigationItem.title else {
+                    return
+                }
+                UserDefaults.standard.set(trainingItem, forKey: key)
+                let nav = self.navigationController
                 // 一つ前のViewControllerを取得する
-                let prevViewController = nav?.viewControllers[(nav?.viewControllers.count)! - 2] as! TrainingMenuTableViewController
+                guard let count = nav?.viewControllers.count else {
+                    return
+                }
+                guard let prevViewController = nav?.viewControllers[count - 2] as? TrainingMenuTableViewController else { return }
 
                 if let array = UserDefaults.standard.value(forKey: "checkmarkArray") as? [[Bool]] {
                     var checkmarkArray = array
-                    //                checkmarkArray[self!.indexPath!.section].insert(true, at: self!.indexPath!.row)
-                    checkmarkArray[self!.indexPath!.section][self!.indexPath!.row] = true
+                    guard let indexPath = self.indexPath else {
+                        return
+                    }
+                    guard checkmarkArray.count > indexPath.row else {
+                        return
+                    }
+                    checkmarkArray[indexPath.section][indexPath.row] = true
                     UserDefaults.standard.set(checkmarkArray, forKey: "checkmarkArray")
                 }
-
                 prevViewController.tableView.reloadData()
-
                 // popする
-                self?.navigationController?.popViewController(animated: true)
+                self.navigationController?.popViewController(animated: true)
             }
 
         }).disposed(by: disposeBag)
@@ -56,8 +62,7 @@ class TrainingSetFlontViewController: UIViewController {
         setupKeyboard()
     }
 
-    func valueCheck(_ trainingItem: [[String]]) -> Bool {
-        print(trainingItem)
+    private func valueCheck(_ trainingItem: [[String]]) -> Bool {
         let set = trainingItem[0]
         let weight = trainingItem[1]
         let count = trainingItem[2]
@@ -65,10 +70,10 @@ class TrainingSetFlontViewController: UIViewController {
         var flg = true
         while set.count > counter {
             if set[counter] == "SET1" {
-                if weight[counter] != "", count[counter] != "" {
-                    flg = true
-                } else {
+                if weight[counter].isEmpty, count[counter].isEmpty {
                     flg = false
+                } else {
+                    flg = true
                 }
             }
 
@@ -77,26 +82,29 @@ class TrainingSetFlontViewController: UIViewController {
         return flg
     }
 
-    func setupKeyboard() {
+    private func setupKeyboard() {
         var flg = true
-        let nxViewController = storyboard!.instantiateViewController(identifier: "TrainingSetViewController") as! TrainingSetViewController
+        guard let nxViewController = storyboard?.instantiateViewController(identifier: "TrainingSetViewController") as? TrainingSetViewController else { return }
         nxViewController.keyboardHeight().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] height in
+            guard let self = self else { return }
             if height == 0 {
-                self?.trainingAddButton.frame.origin.y = self!.view.frame.height - self!.trainingAddButton.frame.height
+                self.trainingAddButton.frame.origin.y = self.view.frame.height - self.trainingAddButton.frame.height
                 flg = true
             } else {
                 if flg {
-                    self?.trainingAddButton.frame.origin.y = self!.trainingAddButton.frame.origin.y - height
+                    self.trainingAddButton.frame.origin.y = self.trainingAddButton.frame.origin.y - height
                     flg = false
                 }
             }
-
         }).disposed(by: disposeBag)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goNext" {
-            trainingSetViewController = (segue.destination as! TrainingSetViewController)
+            guard let destination = segue.destination as? TrainingSetViewController else {
+                return
+            }
+            trainingSetViewController = destination
         }
     }
 }

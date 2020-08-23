@@ -23,7 +23,6 @@ class AuthModalViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // 閉じるボタン
         dismissButton.rx.tap.subscribe(onNext: { [weak self] in
             self?.dismiss(animated: true, completion: nil)
@@ -37,50 +36,74 @@ class AuthModalViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        // レイアウト設定
         let areaTop = view.safeAreaInsets.top
         let areaBottom = view.safeAreaInsets.bottom
         let safeArea = view.frame.height - areaTop - areaBottom
-        var rect: CGSize = headerLabel.sizeThatFits(CGSize(width: (view.frame.width * 2) / 3, height: CGFloat.greatestFiniteMagnitude))
-        headerLabel.frame = CGRect(x: 0, y: safeArea / 20, width: rect.width, height: rect.height)
-        headerLabel.center.x = view.frame.width / 2
-        dismissButton.frame = CGRect(x: view.frame.width - (dismissButton.frame.width * 1.5), y: safeArea / 40, width: 20, height: 20)
-        faceBookButton.frame = CGRect(x: 0, y: headerLabel.frame.height + headerLabel.frame.origin.y + (safeArea / 20), width: (view.frame.width * 2) / 3, height: safeArea / 12)
-        faceBookButton.center.x = view.frame.width / 2
+        let margin = safeArea / 20
+        let center = view.frame.width / 2
+
+        var width: CGFloat = 20
+        var height: CGFloat = 20
+        var originY: CGFloat = 0.0
+
+        dismissButton.frame = CGRect(x: view.frame.width - (dismissButton.frame.width * 1.5), y: margin, width: width, height: height)
+        width = (view.frame.width * 2) / 3
+        height = safeArea / 12
+
+        var rect: CGSize = headerLabel.sizeThatFits(CGSize(width: width, height: CGFloat.greatestFiniteMagnitude))
+        // ログインラベル
+        headerLabel.frame = CGRect(x: 0, y: margin, width: rect.width, height: rect.height)
+        headerLabel.center.x = center
+        originY = headerLabel.frame.height + headerLabel.frame.origin.y + margin
+        // Facebookボタン
+        faceBookButton.frame = CGRect(x: 0, y: originY, width: width, height: height)
+        faceBookButton.center.x = center
         faceBookButton.layer.cornerRadius = 10
-        twitterButton.frame = CGRect(x: 0, y: faceBookButton.frame.height + faceBookButton.frame.origin.y + (safeArea / 20), width: (view.frame.width * 2) / 3, height: safeArea / 12)
-        twitterButton.center.x = view.frame.width / 2
+        originY = faceBookButton.frame.height + faceBookButton.frame.origin.y + margin
+        // Twitterボタン
+        twitterButton.frame = CGRect(x: 0, y: originY, width: width, height: height)
+        twitterButton.center.x = center
         twitterButton.layer.cornerRadius = 10
-        appleButton.frame = CGRect(x: 0, y: twitterButton.frame.height + twitterButton.frame.origin.y + (safeArea / 20), width: (view.frame.width * 2) / 3, height: safeArea / 12)
-        appleButton.center.x = view.frame.width / 2
+        originY = twitterButton.frame.height + twitterButton.frame.origin.y + margin
+        // AppleSignInボタン
+        appleButton.frame = CGRect(x: 0, y: originY, width: width, height: height)
+        appleButton.center.x = center
         appleButton.layer.cornerRadius = 10
-        termsOfServiceButton.frame = CGRect(x: 0, y: appleButton.frame.height + appleButton.frame.origin.y + (safeArea / 40), width: view.frame.width / 4, height: safeArea / 12)
-        termsOfServiceButton.center.x = view.frame.width / 2
+        originY = appleButton.frame.height + appleButton.frame.origin.y + margin
+        width = view.frame.width / 4
+        // 利用規約ボタン
+        termsOfServiceButton.frame = CGRect(x: 0, y: originY, width: width, height: height)
+        termsOfServiceButton.center.x = center
         termsOfServiceButton.layer.cornerRadius = 10
-        rect = middleLabel.sizeThatFits(CGSize(width: (view.frame.width * 2) / 3, height: CGFloat.greatestFiniteMagnitude))
-        middleLabel.frame = CGRect(x: 0, y: termsOfServiceButton.frame.origin.y + termsOfServiceButton.frame.height + (safeArea / 40), width: rect.width, height: rect.height)
-        middleLabel.center.x = view.frame.width / 2
-        signUpButton.frame = CGRect(x: 0, y: middleLabel.frame.height + middleLabel.frame.origin.y + (safeArea / 20), width: (view.frame.width * 2) / 3, height: safeArea / 12)
-        signUpButton.center.x = view.frame.width / 2
+        originY = termsOfServiceButton.frame.origin.y + termsOfServiceButton.frame.height + margin
+        width = (view.frame.width * 2) / 3
+
+        rect = middleLabel.sizeThatFits(CGSize(width: width, height: CGFloat.greatestFiniteMagnitude))
+        // 新規登録ラベル
+        middleLabel.frame = CGRect(x: 0, y: originY, width: rect.width, height: rect.height)
+        middleLabel.center.x = center
+        originY = middleLabel.frame.height + middleLabel.frame.origin.y + margin
+        // 新規登録ボタン
+        signUpButton.frame = CGRect(x: 0, y: originY, width: width, height: height)
+        signUpButton.center.x = center
         signUpButton.layer.borderColor = UIColor.black.cgColor
         signUpButton.layer.borderWidth = 1.0
         signUpButton.layer.cornerRadius = 10
     }
 
-    func authorizationAppleID() {
-        if #available(iOS 13.0, *) {
-            let appleIDProvider = ASAuthorizationAppleIDProvider()
-            let request = appleIDProvider.createRequest()
-            request.requestedScopes = [.fullName, .email]
+    private func authorizationAppleID() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
 
-            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-            authorizationController.delegate = self
-            authorizationController.performRequests()
-        }
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.performRequests()
     }
 }
 
 extension AuthModalViewController: ASAuthorizationControllerDelegate {
-    @available(iOS 13.0, *)
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             // 　取得できる値
@@ -94,9 +117,9 @@ extension AuthModalViewController: ASAuthorizationControllerDelegate {
         }
     }
 
-    @available(iOS 13.0, *)
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // エラー処理
+        print(error)
     }
 }
 

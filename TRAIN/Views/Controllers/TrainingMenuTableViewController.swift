@@ -8,11 +8,12 @@
 
 import UIKit
 
-class TrainingMenuTableViewController: UITableViewController {
+class TrainingMenuTableViewController: UITableViewController, UINavigationControllerDelegate {
     // トレーニングメニューの部位
     private let trainingPartSection = ["腕", "背中", "胸", "肩", "首", "脚", "腹"]
 
-    // トレーニングメニュー達
+    // MARK: APIで取得するように修正を行う
+
     private let armTrainingMenu = ["アームカール", "チンアップ", "ディップス", "プッシュダウン"]
     private let bakTrainingMenu = ["プルアップ", "ダンベルプルオーバー", "ワンハンドローイング", "ラットプルダウン", "デッドリフト"]
     private let breastTrainingMenu = ["インクラインダンベルプレス", "ベンチプレス", "ダンベルフライ", "デクラインダンベルフライ"]
@@ -22,7 +23,7 @@ class TrainingMenuTableViewController: UITableViewController {
     private let bellyTrainingMenu = ["アブドミナルクランチ", "トーソロウテーション", "ケーブルクランチ", "バーティカルベンチレッグレイズ", "バーベルプッシュクランチ"]
 
     // チェックマークを入れる時に利用するBool値
-    var checkmarkArray: [[Bool]]!
+    private var checkmarkArray = [[Bool]]()
 
     // トレーニングメニューを格納する配列
     private var trainingMenuArray = [[String]]()
@@ -39,7 +40,7 @@ class TrainingMenuTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationController?.delegate = self
         // バウンスさせない
         tableView.bounces = false
 
@@ -71,6 +72,9 @@ class TrainingMenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "trainingMenuCell", for: indexPath)
 
+        guard checkmarkArray.count > indexPath.row else {
+            return cell
+        }
         // トレーニングを追加したcellにチェックマークを入れる
         if checkmarkArray[indexPath.section][indexPath.row] == true {
             cell.accessoryType = .checkmark
@@ -85,9 +89,15 @@ class TrainingMenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard = UIStoryboard(name: "TrainingSetViewController", bundle: nil)
         // 次画面にIndexPathを渡して遷移する
-        let nxViewController = storyBoard.instantiateViewController(withIdentifier: "TrainingSetFlontViewController") as! TrainingSetFlontViewController
+        guard let nxViewController = storyBoard.instantiateViewController(withIdentifier: "TrainingSetFlontViewController") as? TrainingSetFlontViewController
+        else { return }
         nxViewController.indexPath = indexPath
         nxViewController.navigationItem.title = trainingMenuArray[indexPath.section][indexPath.row]
         navigationController?.pushViewController(nxViewController, animated: true)
+    }
+
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        guard let apVC = viewController as? PostArticleViewController else { return }
+        apVC.settingParts()
     }
 }

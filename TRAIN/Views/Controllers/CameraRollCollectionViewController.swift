@@ -54,6 +54,8 @@ class CameraRollCollectionViewController: UIViewController {
 
     // 取得したPHAssetを格納
     private var images = [PHAsset]()
+    private var imageManager = PHCachingImageManager()
+    private var fetchResult: PHFetchResult<PHAsset>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +75,7 @@ class CameraRollCollectionViewController: UIViewController {
         }.disposed(by: disposeBag)
 
         // photoLibraryからPHAssetを取得する
-        populerPhotes()
+        loadPhotes()
     }
 
     override func viewDidLayoutSubviews() {
@@ -86,39 +88,35 @@ class CameraRollCollectionViewController: UIViewController {
         imageView.contentMode = .scaleAspectFill
     }
 
-    private func populerPhotes() {
+    private func loadPhotes() {
         PHPhotoLibrary.requestAuthorization { [weak self] status in
-
+            guard let self = self else { return }
             if status == .authorized {
                 // 許可された場合のみ読み込み開始
-                // データの並べ替え条件
+                // データの並べ替え条件を作成日時順に設定する
                 let options = PHFetchOptions()
                 options.sortDescriptors = [
                     NSSortDescriptor(key: "creationDate", ascending: false)
                 ]
-                // imageを指定
-                let assets = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: options)
-                assets.enumerateObjects { (asset, _, _) -> Void in
-                    self?.images.append(asset)
-                }
-
+                self.fetchResult = PHAsset.fetchAssets(with: .image, options: options)
                 DispatchQueue.main.async {
-                    self?.collectionView.reloadData()
+                    self.collectionView.reloadData()
                 }
 
-                let imageManager = PHImageManager.default()
-                let option = PHImageRequestOptions()
-                option.deliveryMode = .highQualityFormat
-                guard let images = self?.images else {
+                // 最新の画像をimageViewに設定してあげる
+                let requestOption = PHImageRequestOptions()
+                requestOption.deliveryMode = .highQualityFormat
+                guard let fetchResult = self.fetchResult else {
                     return
                 }
-                imageManager.requestImage(for: images[0], targetSize: CGSize(width: 480, height: 480), contentMode: .aspectFill, options: option, resultHandler: { image, _ in
-                    self?.selectedPhotoSubject.onNext(image)
-                })
+                let photoAsset = fetchResult.object(at: 0)
+                self.imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: 480, height: 480), contentMode: .aspectFill, options: requestOption) { image, _ in
+                    self.selectedPhotoSubject.onNext(image)
+                }
 
             } else if status == .denied {
                 // 投稿画面に戻る
-                self?.navigationController?.popViewController(animated: true)
+                self.navigationController?.popViewController(animated: true)
             }
         }
     }
@@ -127,12 +125,15 @@ class CameraRollCollectionViewController: UIViewController {
 // collectionViewの設定
 extension CameraRollCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        images.count + 1
+        guard let fetchResult = fetchResult else {
+            return 0
+        }
+        return fetchResult.count + 1
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.item == 0, indexPath.section == 0, indexPath.row == 0 {
-            // cellの一番目は必ずカメラの画像に設定する
+            // cellの一番目はカメラの画像に設定する
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CameraRollFirstCollectionViewCell", for: indexPath) as? CameraRollFirstCollectionViewCell else {
                 return UICollectionViewCell()
             }
@@ -147,19 +148,28 @@ extension CameraRollCollectionViewController: UICollectionViewDelegate, UICollec
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CameraRollCollectionViewCell", for: indexPath) as? CameraRollCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            let imageManager = PHImageManager.default()
+            guard let fetchResult = fetchResult else {
+                return cell
+            }
+
             if let requestId = cell.requestId {
                 imageManager.cancelImageRequest(requestId)
             }
             cell.imageView.image = nil
             let assetIndexPath = indexPath.row - 1
-            let asset = images[assetIndexPath]
+            let photoAsset = fetchResult.object(at: assetIndexPath)
+
             let option = PHImageRequestOptions()
             option.deliveryMode = .highQualityFormat
+            option.isSynchronous = true
             // 画像取得
-            cell.requestId = imageManager.requestImage(for: asset, targetSize: CGSize(width: 480, height: 480), contentMode: .aspectFill, options: option, resultHandler: { image, _ in
-                cell.imageView.image = image
-                cell.imageView.contentMode = .scaleAspectFill
+            cell.requestId = imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: 480, height: 480), contentMode: .aspectFill, options: option, resultHandler: { image, _ in
+
+                DispatchQueue.main.async {
+                    cell.imageView.image = image
+                    cell.imageView.contentMode = .scaleAspectFill
+                }
+
             })
             return cell
         }
@@ -169,27 +179,40 @@ extension CameraRollCollectionViewController: UICollectionViewDelegate, UICollec
         if indexPath.item == 0 {
             // 撮影画面に遷移
             let storyBoard = UIStoryboard(name: "CameraViewController", bundle: nil)
-            guard let nxViewController = storyBoard.instantiateViewController(withIdentifier: "CameraViewController") as? CameraViewController
-            else { return }
+            guard let nxViewController = storyBoard.instantiateViewController(withIdentifier: "CameraViewController") as? CameraViewController else { return }
             nxViewController.currentPhotoSubject = currentPhotoSubject
             navigationController?.pushViewController(nxViewController, animated: true)
 
         } else {
-            guard images.count >= indexPath.item else {
+            guard fetchResult!.count >= indexPath.item else {
                 return
             }
             // 画像選択処理
-            let selectedAssets = images[indexPath.item - 1]
-            PHImageManager.default().requestImage(for: selectedAssets, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFill, options: nil) { [weak self] image, info in
-                guard let info = info else { return }
-                guard let isDegradedImage = info["PHImageResultIsDegradedKey"] as? Bool else { return }
-
-                if !isDegradedImage {
-                    if let image = image {
-                        self?.selectedPhotoSubject.onNext(image)
-                    }
-                }
+            let photoAsset = fetchResult!.object(at: indexPath.item - 1)
+            let requestOption = PHImageRequestOptions()
+            requestOption.deliveryMode = .highQualityFormat
+//            let selectedAssets = images[indexPath.item - 1]
+            imageManager.requestImage(for: photoAsset, targetSize: CGSize(width: 480, height: 480), contentMode: .aspectFill, options: requestOption) { image, _ in
+                self.selectedPhotoSubject.onNext(image)
             }
+        }
+    }
+}
+
+extension CameraRollCollectionViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        DispatchQueue.main.async {
+            let option = PHImageRequestOptions()
+            option.deliveryMode = .highQualityFormat
+            self.imageManager.startCachingImages(for: indexPaths.map { self.fetchResult!.object(at: $0.item - 1) }, targetSize: CGSize(width: 480, height: 480), contentMode: .aspectFill, options: option)
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        DispatchQueue.main.async {
+            let option = PHImageRequestOptions()
+            option.deliveryMode = .highQualityFormat
+            self.imageManager.stopCachingImages(for: indexPaths.map { self.fetchResult!.object(at: $0.item - 1) }, targetSize: CGSize(width: 480, height: 480), contentMode: .aspectFill, options: option)
         }
     }
 }

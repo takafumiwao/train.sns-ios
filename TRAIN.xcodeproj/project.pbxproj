@@ -20,20 +20,18 @@
 		6B770A5823B8E3FC004F478C /* UITableView.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B770A5723B8E3FC004F478C /* UITableView.extension.swift */; };
 		6B770A5A23B8EAB1004F478C /* UIViewController.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B770A5923B8EAB1004F478C /* UIViewController.extension.swift */; };
 		7E0B4429BA617BE8AC5906AF /* Pods_TRAIN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC67237D0EDBC3ED907D52DB /* Pods_TRAIN.framework */; };
+		AC1E076F24AB781F0096A9DF /* AddTagListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC1E076E24AB781F0096A9DF /* AddTagListViewController.storyboard */; };
 		AC35BACE2407FF970039E7E5 /* TraininngMenuViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC35BACD2407FF970039E7E5 /* TraininngMenuViewController.storyboard */; };
 		AC35BAD02407FFE50039E7E5 /* MealMenuViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC35BACF2407FFE50039E7E5 /* MealMenuViewController.storyboard */; };
-		AC35BAD22407FFF30039E7E5 /* TagViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC35BAD12407FFF30039E7E5 /* TagViewController.storyboard */; };
-		AC41C8ED2442BBC400C8479E /* ArticlePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC41C8EC2442BBC400C8479E /* ArticlePostViewController.swift */; };
-		AC41C8EF2442BBD800C8479E /* ArticlePostViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC41C8EE2442BBD800C8479E /* ArticlePostViewController.storyboard */; };
-		AC41C8F12442BEED00C8479E /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC41C8F02442BEED00C8479E /* ArticleViewController.swift */; };
+		AC4F5AE024B0A99D002F1698 /* AddTagListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F5ADF24B0A99D002F1698 /* AddTagListViewModel.swift */; };
+		AC4F5AE224B18B3F002F1698 /* PostArticleViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC4F5AE124B18B3F002F1698 /* PostArticleViewController.storyboard */; };
+		AC4F5AE424B18BDD002F1698 /* PostArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F5AE324B18BDD002F1698 /* PostArticleViewController.swift */; };
 		AC5276F5242E84930006E4AC /* MealMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5276F4242E84930006E4AC /* MealMenuViewModel.swift */; };
-		AC5276FB2430619D0006E4AC /* TrainingSetTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5276FA2430619D0006E4AC /* TrainingSetTableViewModel.swift */; };
 		AC7C4F8B2426F68500D0064B /* CameraRollCollectionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC7C4F8A2426F68500D0064B /* CameraRollCollectionViewController.storyboard */; };
 		AC7C4F8D2426F71400D0064B /* CameraRollCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7C4F8C2426F71400D0064B /* CameraRollCollectionViewController.swift */; };
 		AC7C4F902426FAEC00D0064B /* CameraRollCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7C4F8E2426FAEC00D0064B /* CameraRollCollectionViewCell.swift */; };
 		AC7C4F932428C35400D0064B /* CameraViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC7C4F922428C35400D0064B /* CameraViewController.storyboard */; };
 		AC7C4F952428CC4400D0064B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7C4F942428CC4400D0064B /* CameraViewController.swift */; };
-		AC7C4F97242A44C000D0064B /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7C4F96242A44C000D0064B /* TagViewController.swift */; };
 		AC7C4F9A242B5F8B00D0064B /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7C4F99242B5F8B00D0064B /* PostViewModel.swift */; };
 		AC8A302C240803FE00370A6B /* TrainingMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A302B240803FE00370A6B /* TrainingMenuTableViewController.swift */; };
 		AC8A3035240945CE00370A6B /* TrainingSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A3033240945CE00370A6B /* TrainingSetTableViewCell.swift */; };
@@ -43,14 +41,12 @@
 		AC8A30422409FA2300370A6B /* TrainingSetViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC8A30412409FA2300370A6B /* TrainingSetViewController.storyboard */; };
 		AC8A30442409FF4F00370A6B /* TrainingSetFlontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A30432409FF4F00370A6B /* TrainingSetFlontViewController.swift */; };
 		AC8A3046240A7A1600370A6B /* MealMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A3045240A7A1600370A6B /* MealMenuViewController.swift */; };
-		AC8E65432441BA33006471FB /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8E65422441BA33006471FB /* LeftAlignedCollectionViewFlowLayout.swift */; };
-		AC9071EA243E0F250048C829 /* AddTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9071E9243E0F250048C829 /* AddTagViewController.swift */; };
 		AC92E5162435FAEE0058F5F2 /* TrainingSetViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC92E5152435FAEE0058F5F2 /* TrainingSetViewDataSource.swift */; };
-		AC92E51824384C1C0058F5F2 /* UserDefaults.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC92E51724384C1C0058F5F2 /* UserDefaults.extension.swift */; };
 		AC92E51A2438D9FC0058F5F2 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC92E5192438D9FC0058F5F2 /* TagCollectionViewCell.swift */; };
 		ACA6F1F3246262BD00E8B5E6 /* AuthModalViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACA6F1F2246262BD00E8B5E6 /* AuthModalViewController.storyboard */; };
 		ACA6F1F5246263B000E8B5E6 /* AuthModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA6F1F4246263B000E8B5E6 /* AuthModalViewController.swift */; };
 		ACA6F1F72462678D00E8B5E6 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA6F1F62462678D00E8B5E6 /* CustomPresentationController.swift */; };
+		ACA7BDC524868B96003D8BFA /* AddTagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA7BDC424868B96003D8BFA /* AddTagListViewController.swift */; };
 		ACEA7ECA243A07A300AEB385 /* TagViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA7EC9243A07A300AEB385 /* TagViewDataSource.swift */; };
 		ACEC60422420DC9F0093D66A /* PastInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC60412420DC9F0093D66A /* PastInputViewController.swift */; };
 		ACEC60442420DCC20093D66A /* DirectInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC60432420DCC20093D66A /* DirectInputViewController.swift */; };
@@ -74,20 +70,18 @@
 		6B770A5423B8E089004F478C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		6B770A5723B8E3FC004F478C /* UITableView.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.extension.swift; sourceTree = "<group>"; };
 		6B770A5923B8EAB1004F478C /* UIViewController.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.extension.swift; sourceTree = "<group>"; };
+		AC1E076E24AB781F0096A9DF /* AddTagListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddTagListViewController.storyboard; sourceTree = "<group>"; };
 		AC35BACD2407FF970039E7E5 /* TraininngMenuViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TraininngMenuViewController.storyboard; sourceTree = "<group>"; };
 		AC35BACF2407FFE50039E7E5 /* MealMenuViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MealMenuViewController.storyboard; sourceTree = "<group>"; };
-		AC35BAD12407FFF30039E7E5 /* TagViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TagViewController.storyboard; sourceTree = "<group>"; };
-		AC41C8EC2442BBC400C8479E /* ArticlePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlePostViewController.swift; sourceTree = "<group>"; };
-		AC41C8EE2442BBD800C8479E /* ArticlePostViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ArticlePostViewController.storyboard; sourceTree = "<group>"; };
-		AC41C8F02442BEED00C8479E /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
+		AC4F5ADF24B0A99D002F1698 /* AddTagListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagListViewModel.swift; sourceTree = "<group>"; };
+		AC4F5AE124B18B3F002F1698 /* PostArticleViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostArticleViewController.storyboard; sourceTree = "<group>"; };
+		AC4F5AE324B18BDD002F1698 /* PostArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostArticleViewController.swift; sourceTree = "<group>"; };
 		AC5276F4242E84930006E4AC /* MealMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealMenuViewModel.swift; sourceTree = "<group>"; };
-		AC5276FA2430619D0006E4AC /* TrainingSetTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSetTableViewModel.swift; sourceTree = "<group>"; };
 		AC7C4F8A2426F68500D0064B /* CameraRollCollectionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CameraRollCollectionViewController.storyboard; sourceTree = "<group>"; };
 		AC7C4F8C2426F71400D0064B /* CameraRollCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraRollCollectionViewController.swift; sourceTree = "<group>"; };
 		AC7C4F8E2426FAEC00D0064B /* CameraRollCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraRollCollectionViewCell.swift; path = TRAIN/Views/Controllers/CameraRollCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		AC7C4F922428C35400D0064B /* CameraViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CameraViewController.storyboard; sourceTree = "<group>"; };
 		AC7C4F942428CC4400D0064B /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		AC7C4F96242A44C000D0064B /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		AC7C4F99242B5F8B00D0064B /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		AC8A302B240803FE00370A6B /* TrainingMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingMenuTableViewController.swift; sourceTree = "<group>"; };
 		AC8A3033240945CE00370A6B /* TrainingSetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrainingSetTableViewCell.swift; path = TRAIN/Views/Controllers/TrainingSetTableViewCell.swift; sourceTree = SOURCE_ROOT; };
@@ -97,14 +91,12 @@
 		AC8A30412409FA2300370A6B /* TrainingSetViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TrainingSetViewController.storyboard; sourceTree = "<group>"; };
 		AC8A30432409FF4F00370A6B /* TrainingSetFlontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSetFlontViewController.swift; sourceTree = "<group>"; };
 		AC8A3045240A7A1600370A6B /* MealMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealMenuViewController.swift; sourceTree = "<group>"; };
-		AC8E65422441BA33006471FB /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		AC9071E9243E0F250048C829 /* AddTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagViewController.swift; sourceTree = "<group>"; };
 		AC92E5152435FAEE0058F5F2 /* TrainingSetViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSetViewDataSource.swift; sourceTree = "<group>"; };
-		AC92E51724384C1C0058F5F2 /* UserDefaults.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.extension.swift; sourceTree = "<group>"; };
 		AC92E5192438D9FC0058F5F2 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TagCollectionViewCell.swift; path = TRAIN/Extensions/TagCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		ACA6F1F2246262BD00E8B5E6 /* AuthModalViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthModalViewController.storyboard; sourceTree = "<group>"; };
 		ACA6F1F4246263B000E8B5E6 /* AuthModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModalViewController.swift; sourceTree = "<group>"; };
 		ACA6F1F62462678D00E8B5E6 /* CustomPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
+		ACA7BDC424868B96003D8BFA /* AddTagListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagListViewController.swift; sourceTree = "<group>"; };
 		ACCF8F722470C7E8006C6226 /* TRAIN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TRAIN.entitlements; sourceTree = "<group>"; };
 		ACEA7EC9243A07A300AEB385 /* TagViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewDataSource.swift; sourceTree = "<group>"; };
 		ACEC60412420DC9F0093D66A /* PastInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastInputViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +178,7 @@
 				6B770A5023B8DF41004F478C /* HomeViewController.swift */,
 				6B770A5223B8DF66004F478C /* MyPageViewController.swift */,
 				6B770A5423B8E089004F478C /* TabBarController.swift */,
+				AC4F5AE324B18BDD002F1698 /* PostArticleViewController.swift */,
 				AC7C4F8C2426F71400D0064B /* CameraRollCollectionViewController.swift */,
 				AC7C4F942428CC4400D0064B /* CameraViewController.swift */,
 				AC8A302B240803FE00370A6B /* TrainingMenuTableViewController.swift */,
@@ -194,11 +187,7 @@
 				AC8A3045240A7A1600370A6B /* MealMenuViewController.swift */,
 				ACEC60412420DC9F0093D66A /* PastInputViewController.swift */,
 				ACEC60432420DCC20093D66A /* DirectInputViewController.swift */,
-				AC7C4F96242A44C000D0064B /* TagViewController.swift */,
-				AC8E65422441BA33006471FB /* LeftAlignedCollectionViewFlowLayout.swift */,
-				AC9071E9243E0F250048C829 /* AddTagViewController.swift */,
-				AC41C8EC2442BBC400C8479E /* ArticlePostViewController.swift */,
-				AC41C8F02442BEED00C8479E /* ArticleViewController.swift */,
+				ACA7BDC424868B96003D8BFA /* AddTagListViewController.swift */,
 				ACA6F1F4246263B000E8B5E6 /* AuthModalViewController.swift */,
 				ACA6F1F62462678D00E8B5E6 /* CustomPresentationController.swift */,
 			);
@@ -212,13 +201,13 @@
 				6B770A4A23B4E9B5004F478C /* TabBarController.storyboard */,
 				6B770A4C23B4EA14004F478C /* HomeViewController.storyboard */,
 				6B770A4E23B4EAAA004F478C /* MyPageViewController.storyboard */,
+				AC4F5AE124B18B3F002F1698 /* PostArticleViewController.storyboard */,
 				AC7C4F8A2426F68500D0064B /* CameraRollCollectionViewController.storyboard */,
 				AC7C4F922428C35400D0064B /* CameraViewController.storyboard */,
 				AC35BACD2407FF970039E7E5 /* TraininngMenuViewController.storyboard */,
 				AC8A30412409FA2300370A6B /* TrainingSetViewController.storyboard */,
 				AC35BACF2407FFE50039E7E5 /* MealMenuViewController.storyboard */,
-				AC35BAD12407FFF30039E7E5 /* TagViewController.storyboard */,
-				AC41C8EE2442BBD800C8479E /* ArticlePostViewController.storyboard */,
+				AC1E076E24AB781F0096A9DF /* AddTagListViewController.storyboard */,
 				ACA6F1F2246262BD00E8B5E6 /* AuthModalViewController.storyboard */,
 			);
 			path = Storyboards;
@@ -251,7 +240,6 @@
 				6B770A5723B8E3FC004F478C /* UITableView.extension.swift */,
 				6B770A5923B8EAB1004F478C /* UIViewController.extension.swift */,
 				AC8A30372409491C00370A6B /* UITextField.extension.swift */,
-				AC92E51724384C1C0058F5F2 /* UserDefaults.extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -269,7 +257,7 @@
 			children = (
 				AC7C4F99242B5F8B00D0064B /* PostViewModel.swift */,
 				AC5276F4242E84930006E4AC /* MealMenuViewModel.swift */,
-				AC5276FA2430619D0006E4AC /* TrainingSetTableViewModel.swift */,
+				AC4F5ADF24B0A99D002F1698 /* AddTagListViewModel.swift */,
 			);
 			path = PostViewModel;
 			sourceTree = "<group>";
@@ -346,14 +334,14 @@
 			files = (
 				AC8A3036240945CE00370A6B /* TrainingSetTableViewCell.xib in Resources */,
 				6B770A4F23B4EAAA004F478C /* MyPageViewController.storyboard in Resources */,
-				AC41C8EF2442BBD800C8479E /* ArticlePostViewController.storyboard in Resources */,
 				ACFDE996245527570043CCDB /* CameraRollFirstCollectionViewCell.xib in Resources */,
+				AC4F5AE224B18B3F002F1698 /* PostArticleViewController.storyboard in Resources */,
 				AC35BAD02407FFE50039E7E5 /* MealMenuViewController.storyboard in Resources */,
-				AC35BAD22407FFF30039E7E5 /* TagViewController.storyboard in Resources */,
 				AC35BACE2407FF970039E7E5 /* TraininngMenuViewController.storyboard in Resources */,
 				6B770A4D23B4EA14004F478C /* HomeViewController.storyboard in Resources */,
 				6B770A4B23B4E9B5004F478C /* TabBarController.storyboard in Resources */,
 				6B770A3C23AF9B2B004F478C /* LaunchScreen.storyboard in Resources */,
+				AC1E076F24AB781F0096A9DF /* AddTagListViewController.storyboard in Resources */,
 				AC8A30422409FA2300370A6B /* TrainingSetViewController.storyboard in Resources */,
 				ACA6F1F3246262BD00E8B5E6 /* AuthModalViewController.storyboard in Resources */,
 				6B770A3923AF9B2B004F478C /* Assets.xcassets in Resources */,
@@ -431,35 +419,31 @@
 				ACEA7ECA243A07A300AEB385 /* TagViewDataSource.swift in Sources */,
 				AC92E5162435FAEE0058F5F2 /* TrainingSetViewDataSource.swift in Sources */,
 				ACA6F1F72462678D00E8B5E6 /* CustomPresentationController.swift in Sources */,
+				AC4F5AE424B18BDD002F1698 /* PostArticleViewController.swift in Sources */,
 				AC8A3035240945CE00370A6B /* TrainingSetTableViewCell.swift in Sources */,
 				AC7C4F952428CC4400D0064B /* CameraViewController.swift in Sources */,
 				ACFDE995245527570043CCDB /* CameraRollFirstCollectionViewCell.swift in Sources */,
 				6B770A5A23B8EAB1004F478C /* UIViewController.extension.swift in Sources */,
 				6B770A3023AF9B26004F478C /* AppDelegate.swift in Sources */,
-				AC41C8ED2442BBC400C8479E /* ArticlePostViewController.swift in Sources */,
 				AC8A30382409491C00370A6B /* UITextField.extension.swift in Sources */,
-				AC7C4F97242A44C000D0064B /* TagViewController.swift in Sources */,
 				AC92E51A2438D9FC0058F5F2 /* TagCollectionViewCell.swift in Sources */,
-				AC41C8F12442BEED00C8479E /* ArticleViewController.swift in Sources */,
 				ACEC60442420DCC20093D66A /* DirectInputViewController.swift in Sources */,
-				AC8E65432441BA33006471FB /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				AC7C4F902426FAEC00D0064B /* CameraRollCollectionViewCell.swift in Sources */,
 				AC8A3046240A7A1600370A6B /* MealMenuViewController.swift in Sources */,
 				AC5276F5242E84930006E4AC /* MealMenuViewModel.swift in Sources */,
-				AC92E51824384C1C0058F5F2 /* UserDefaults.extension.swift in Sources */,
 				AC8A30442409FF4F00370A6B /* TrainingSetFlontViewController.swift in Sources */,
 				6B770A3223AF9B26004F478C /* SceneDelegate.swift in Sources */,
 				AC8A30402409F9E200370A6B /* TrainingSetViewController.swift in Sources */,
 				6B770A5123B8DF41004F478C /* HomeViewController.swift in Sources */,
+				AC4F5AE024B0A99D002F1698 /* AddTagListViewModel.swift in Sources */,
 				ACA6F1F5246263B000E8B5E6 /* AuthModalViewController.swift in Sources */,
 				AC7C4F9A242B5F8B00D0064B /* PostViewModel.swift in Sources */,
 				6B770A5523B8E089004F478C /* TabBarController.swift in Sources */,
-				AC9071EA243E0F250048C829 /* AddTagViewController.swift in Sources */,
 				AC7C4F8D2426F71400D0064B /* CameraRollCollectionViewController.swift in Sources */,
 				6B770A5823B8E3FC004F478C /* UITableView.extension.swift in Sources */,
 				6B770A5323B8DF66004F478C /* MyPageViewController.swift in Sources */,
+				ACA7BDC524868B96003D8BFA /* AddTagListViewController.swift in Sources */,
 				AC8A302C240803FE00370A6B /* TrainingMenuTableViewController.swift in Sources */,
-				AC5276FB2430619D0006E4AC /* TrainingSetTableViewModel.swift in Sources */,
 				ACEC60422420DC9F0093D66A /* PastInputViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

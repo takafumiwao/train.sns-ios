@@ -15,7 +15,6 @@ class TrainingSetViewController: UIViewController, UITableViewDelegate {
     var keyboardHeightObservable: Observable<CGFloat>?
     // セクション
     private let disposeBag = DisposeBag()
-    private let trainingSetViewModel = TrainingSetTableViewModel()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
     private let userDefault = UserDefaults.standard
@@ -24,15 +23,15 @@ class TrainingSetViewController: UIViewController, UITableViewDelegate {
     let weightArray = BehaviorRelay<[String]>(value: [""])
     let countArray = BehaviorRelay<[String]>(value: [""])
 
-    private var path: String?
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // userDefautsのパスを取得する
         let parentVC = parent as? TrainingSetFlontViewController
-        path = parentVC?.navigationItem.title!
+        guard let key = parentVC?.navigationItem.title else {
+            return
+        }
         // userDefaults読み込み
-        if let trainingSetItem = userDefault.value(forKey: (parentVC?.navigationItem.title)!) as? [[String]] {
+        if let trainingSetItem = userDefault.value(forKey: key) as? [[String]] {
             setArray.accept(trainingSetItem[0])
             weightArray.accept(trainingSetItem[1])
             countArray.accept(trainingSetItem[2])
@@ -44,26 +43,27 @@ class TrainingSetViewController: UIViewController, UITableViewDelegate {
         let datasource = TrainingSetViewDataSource()
         tableView.delegate = datasource
         // tableViewと値をバウンド
-        Observable.combineLatest(setArray, weightArray, countArray) { TrainingSetViewDataSource.Element(set: $0, weight: $1, count: $2) }.bind(to: tableView.rx.items(dataSource: datasource)).disposed(by: disposeBag)
+        Observable.combineLatest(setArray, weightArray, countArray) { TrainingSetViewDataSource.Element(setCount: $0, weight: $1, count: $2) }.bind(to: tableView.rx.items(dataSource: datasource)).disposed(by: disposeBag)
         // 値の購読
         datasource.textArray.subscribe(onNext: { [weak self] textArray in
-            self?.setArray.accept(textArray[0])
-            self?.weightArray.accept(textArray[1])
-            self?.countArray.accept(textArray[2])
+            guard let self = self else { return }
+            self.setArray.accept(textArray[0])
+            self.weightArray.accept(textArray[1])
+            self.countArray.accept(textArray[2])
         }).disposed(by: disposeBag)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView(frame: .zero)
         // キーボドの設定・監視
         keyboardHeightObservable = keyboardHeight()
-        keyboardHeightObservable?.subscribe(onNext: { [weak self] float in
+        guard let keyboardHeightObservable = keyboardHeightObservable else {
+            return
+        }
+        keyboardHeightObservable.subscribe(onNext: { [weak self] float in
             self?.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: float * 1.5, right: 0)
         }).disposed(by: disposeBag)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 
     func keyboardHeight() -> Observable<CGFloat> {
@@ -71,7 +71,8 @@ class TrainingSetViewController: UIViewController, UITableViewDelegate {
             .from([
                 NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
                     .map { notification -> CGFloat in
-                        (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height ?? 0
+                        guard let notification = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height else { return 0.0 }
+                        return notification
                     },
                 NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification)
                     .map { _ -> CGFloat in

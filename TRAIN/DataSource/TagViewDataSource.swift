@@ -16,6 +16,9 @@ class TagViewDataSource: NSObject, UITableViewDataSource, RxTableViewDataSourceT
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CELL", for: indexPath)
+        guard items.count > indexPath.row else {
+            return cell
+        }
         cell.textLabel?.text = "\(items[indexPath.row])"
         return cell
     }
@@ -26,7 +29,7 @@ class TagViewDataSource: NSObject, UITableViewDataSource, RxTableViewDataSourceT
 
     func tableView(_ tableView: UITableView, observedEvent: Event<Element>) {
         Binder(self) { dataSource, items in
-            if dataSource.items == items { return }
+            guard dataSource.items != items else { return }
             dataSource.items = items
             tableView.reloadData()
         }
